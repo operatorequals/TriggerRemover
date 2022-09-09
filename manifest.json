@@ -1,0 +1,52 @@
+{
+    "name": "TriggerRemover",
+    "version": "0.0.1",
+    "description": "Remove Trigger-inducing content from pages",
+    "manifest_version": 2,
+    "icons": {
+        "16": "assets/images/icon16.png",
+        "32": "assets/images/icon32.png",
+        "48": "assets/images/icon48.png",
+        "128": "assets/images/icon128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "browser_style": true
+    },
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "browser_style": false
+    },
+    "background": {
+        "scripts": ["assets/js/background.js"]
+    },
+
+
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "addon@example.com",
+        "strict_min_version": "42.0"
+      }
+    },
+
+
+  "content_scripts": [
+    {
+      "matches": [
+        // Youtube search result pages
+        "https://*.youtube.com/results?*",
+        "https://youtube.com/results?*"
+
+        // Youtube Channel video pages
+        // "https://www.youtube.com/c/*/videos",
+        // "https://www.youtube.com/c/*"
+        ],
+      "js": ["assets/js/page-purifier-youtube-results.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
