@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigger Lists</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="p-3">
+    <h1>Trigger Lists</h1>
+    <form id="add">
+        <div class="form-group">
+            <label for="name">Trigger Word</label>
+            <input type="text" class="form-control" name="word" id="word" placeholder="" required />
+        </div>
+        <div class="form-group">
+            <label><b>Options:</b></label><br>
+
+            <input type="checkbox" name="case-sensitive" id="case-sensitive" value="case-sensitive">
+            <label>Case Sensitive</label> <br>
+
+            <input type="checkbox" name="whole-word" id="whole-word" value=true>
+            <label>Whole Word</label> <br>
+
+            <input type="checkbox" name="regex" id="regex" value="regex">
+            <label><i>[Advanced]</i> Regular Expression (not implemented) </label> <br>
+
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">
+            Add Trigger Word
+        </button>
+    </form>
+    <br>
+    -----
+    <br>
+    <form id="import">
+        <input type="file" id="trigger_list_file" required>
+        <input type="checkbox" name="overwrite_trigger_list" id="overwrite_trigger_list" value="overwrite_trigger_list">
+        <label><b> Overwrite existing?</b></label>
+
+        <br>
+        <button type="submit" class="btn btn-primary mt-3">
+            Import Trigger Word File
+        </button>
+    </form>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/options.js"></script>
+    <br>
+</body>
+</html>

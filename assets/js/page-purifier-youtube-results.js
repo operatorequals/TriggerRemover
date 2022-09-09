@@ -1,40 +1,58 @@
 targetNode = null
+triggers = null
+
+browser.storage.sync.get(['triggers'])
+    .then((result) => {
+        triggers = result.triggers;
+		console.log("Trigger words loaded: " + Object.keys(triggers).length)
+    });
+
 
 function removeElement(elem) {
 	elem.remove()
 }
 
 function containsTrigger(videoElement){
-	const triggers = ["eugenia cooney", "eugeniacooney", "anorexi", "weight", "fat"];
+	console.log("-> Checking:")
+	console.log(videoElement.innerText)
 
-	text = videoElement.innerText
-	lower_text = text.toLowerCase();
-	console.log("Checking:")
-	console.log(lower_text)
+	for (let trigger_word in triggers){
+		regex_flags = "g"
+		checked_text = videoElement.innerText
+		console.log(`[+] Checking for '${trigger_word}'...`)
+		console.log(triggers[trigger_word])
 
-	for (let trigger_word of triggers){
+		console.log("[1] Checking case_sensitive")
+		// If case_sensitive is NOT set - to lower case
+		if (!triggers[trigger_word]["case_sensitive"]) {
+			regex_flags += "i"
+			checked_text = checked_text.toLowerCase()
+			trigger_word = trigger_word.toLowerCase()
+		}
 
-		trigger_word = trigger_word.toLowerCase()
-		console.log(`Checking for '${trigger_word}'...`)
+		console.log("[2] Checking whole_word")
+		// If whole_word is set - create a regex with greedy whitespaces
+		if (triggers[trigger_word]["whole_word"]) {
+			trigger_word = new RegExp(`\\s*${trigger_word}\\s*`, regex_flags)
+		}
 
-		if (lower_text.includes(trigger_word)){
-			console.log(`Word: ${trigger_word} found`)
-			return true			
+		console.log("[3] Checking regex")
+		// If regex is set - create a regex
+		if (triggers[trigger_word]["regex"]) {
+			console.log("is a regex")
+			trigger_word = new RegExp(trigger_word, regex_flags)
+		}
+
+		console.log("[!] Checking existence: ")
+		console.log(checked_text.match(trigger_word))
+		if (checked_text.match(trigger_word)){
+			console.log(`[#] Word: ${trigger_word} found`)
+			return true
 		}
 	}
+	console.log("[#] Clear, moving on...")
 	return false
 }
-// 	trigger_words = ["Chemical"]
-//     browser.storage.sync.set({trigger_words})
-
-
-// 	browser.storage.sync.get("trigger_words").then((result) => {
-//         if (result.hasOwnProperty('trigger_words') && result.trigger_words) {
-//         	console.log(result.trigger_words)
-//         }
-//     };
-//     return true
-// }
 
 function handleVideo(videoElement){
 	console.log("Handling Video:")
@@ -55,13 +73,6 @@ function handleChannel(channelElement){
 }
 
 function watchResults(targetNode){
-/*
-<ytd-two-column-search-results-renderer is-search="true" class="style-scope ytd-search" bigger-thumbs-style="DEFAULT" center-results="" style="--ytd-search-chips-bar-width: 1096px;" guide-persistent-and-visible=""><!--css-build:shady--><div id="primary" class="style-scope ytd-two-column-search-results-renderer">
-*/	
-
-/*
-#dismissible.ytd-video-renderer
-*/
 
 	// Options for the observer (which mutations to observe)
 	const config = { attributes: true, childList: true, subtree: true };
@@ -82,14 +93,14 @@ function watchResults(targetNode){
 			});
 		}
 	};
-	console.log("Handling loaded videos:")
+	console.log("Handling loaded videos/channels:")
 	videos = targetNode.querySelectorAll('ytd-video-renderer')
 	channels = targetNode.querySelectorAll('ytd-channel-renderer')
 
-	console.log(videos)
 	videos.forEach(handleVideo);
 	channels.forEach(handleChannel);
 
+	console.log("================")
 	console.log("Watching:")
 	console.log(targetNode)
 
@@ -98,29 +109,24 @@ function watchResults(targetNode){
 
 	// Start observing the target node for configured mutations
 	observer.observe(targetNode, config);
-
-	// // Later, you can stop observing
-	// observer.disconnect();	
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-	// const targetNode = document.getElementById('contents');
-
-});
-
 window.onload = function() {
+
+
 	console.log("Loaded!")
 	const contentsObserver = new MutationObserver((mutations, obs) => {
+
+		const targetNode = document.querySelector('ytd-app');
 		// const targetNode = document.getElementById('content');
 		// const targetNode = document.querySelector('div#content.ytd-app');
 		// const targetNode = document.getElementById('contents');
 		// const targetNode = document.getElementById('container');
 		// const targetNode = document.querySelector('ytd-section-list-renderer')
 		// const targetNode = document.querySelector('div#container.ytd-search')
-		const targetNode = document
+		// const targetNode = document
 
 		if (targetNode) {
-
 			obs.disconnect();
 			watchResults(targetNode)
 			return;
@@ -131,5 +137,4 @@ window.onload = function() {
 	  childList: true,
 	  subtree: true
 	});
-
 }

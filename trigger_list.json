@@ -1,0 +1,15 @@
+{
+ "eugenia\\s*cooney":{"case_sensitive": false,"whole_word":false,"regex":true},
+ "anorexi":{"case_sensitive": false,"whole_word":false,"regex":false},
+ "bulimia":{"case_sensitive": false,"whole_word":false,"regex":false},
+ "eating\\s*disorder":{"case_sensitive": false,"whole_word":false,"regex":true},
+ "lose\\s*weight":{"case_sensitive": false,"whole_word":false,"regex":true},
+ "losing\\s*weight":{"case_sensitive": false,"whole_word":false,"regex":true},
+ "weight\\s*loss":{"case_sensitive": false,"whole_word":false,"regex":true},
+ "thinspo":{"case_sensitive": false,"whole_word":false,"regex":false},
+ "thinspiration":{"case_sensitive": false,"whole_word":false,"regex":false},
+ "diet":{"case_sensitive": false,"whole_word":false,"regex":false},
+ "\\WTW\\W":{"case_sensitive": false,"whole_word":false,"regex":true},
+ "TW":{"case_sensitive": false,"whole_word":true,"regex":true}
+
+}
