@@ -7,6 +7,20 @@ browser.storage.sync.get(['triggers'])
 		console.log("Trigger words loaded: " + Object.keys(triggers).length)
     });
 
+// Taken from:
+// https://stackoverflow.com/a/39905590
+/*
+String.prototype.fuzzy = function(term, ratio=0.7) {
+    var string = this.toLowerCase();
+    var compare = term.toLowerCase();
+    var matches = 0;
+    if (string.indexOf(compare) > -1) return true; // covers basic partial matches
+    for (var i = 0; i < compare.length; i++) {
+        string.indexOf(compare[i]) > -1 ? matches += 1 : matches -=1;
+    }
+    return (matches/this.length >= ratio || term == "")
+};
+*/
 
 function removeElement(elem) {
 	elem.remove()
@@ -26,22 +40,18 @@ function containsTrigger(videoElement){
 		// If case_sensitive is NOT set - to lower case
 		if (!triggers[trigger_word]["case_sensitive"]) {
 			regex_flags += "i"
-			checked_text = checked_text.toLowerCase()
-			trigger_word = trigger_word.toLowerCase()
+			// checked_text = checked_text.toLowerCase()
+			// trigger_word = trigger_word.toLowerCase()
 		}
 
 		console.log("[2] Checking whole_word")
 		// If whole_word is set - create a regex with greedy whitespaces
 		if (triggers[trigger_word]["whole_word"]) {
-			trigger_word = new RegExp(`\\s*${trigger_word}\\s*`, regex_flags)
+			trigger_word = `\\s*${trigger_word}\\s*`
 		}
 
-		console.log("[3] Checking regex")
-		// If regex is set - create a regex
-		if (triggers[trigger_word]["regex"]) {
-			console.log("is a regex")
-			trigger_word = new RegExp(trigger_word, regex_flags)
-		}
+		console.log("[+] Creating regex")
+		trigger_word = new RegExp(trigger_word, regex_flags)
 
 		console.log("[!] Checking existence: ")
 		console.log(checked_text.match(trigger_word))
@@ -93,9 +103,11 @@ function watchResults(targetNode){
 			});
 		}
 	};
+
 	console.log("Handling loaded videos/channels:")
 	videos = targetNode.querySelectorAll('ytd-video-renderer')
 	channels = targetNode.querySelectorAll('ytd-channel-renderer')
+	// Playlists: ytd-playlist-renderer
 
 	videos.forEach(handleVideo);
 	channels.forEach(handleChannel);

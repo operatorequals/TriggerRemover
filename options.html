@@ -8,6 +8,7 @@
 </head>
 <body class="p-3">
     <h1>Trigger Lists</h1>
+    <hr>    
     <form id="add">
         <div class="form-group">
             <label for="name">Trigger Word</label>
@@ -23,7 +24,7 @@
             <label>Whole Word</label> <br>
 
             <input type="checkbox" name="regex" id="regex" value="regex">
-            <label><i>[Advanced]</i> Regular Expression (not implemented) </label> <br>
+            <label>[<i>Advanced</i>] Regular Expression </label> <br>
 
         </div>
         <button type="submit" class="btn btn-primary mt-3">
@@ -31,7 +32,7 @@
         </button>
     </form>
     <br>
-    -----
+    <hr>
     <br>
     <form id="import">
         <input type="file" id="trigger_list_file" required>
@@ -41,6 +42,28 @@
         <br>
         <button type="submit" class="btn btn-primary mt-3">
             Import Trigger Word File
+        </button>
+    </form>
+    <br>
+    <hr>
+    <br>
+    <form id="export">
+        <div class="form-group">
+            <label for="list_name">List name</label>
+            <input type="text" class="form-control" name="list_name" id="list_name" placeholder="my_trigger_list" required />
+        </div>
+
+        <div class="form-group">
+            <label for="list_author"> List Author <i>(e.g: Email, Twitter handle, Forum user URL) </i></label>
+            <input type="text" class="form-control" name="list_author" id="list_author" placeholder="" />
+        </div>
+
+        <input type="checkbox" name="obfuscate_trigger_list" id="obfuscate_trigger_list" value="obfuscate_trigger_list">
+        <label> Obfuscate (words will <b>not</b> be readable)</label>
+
+        <br>
+        <button type="submit" class="btn btn-primary mt-3">
+            Export Trigger Word File
         </button>
     </form>
     <script src="assets/js/jquery.min.js"></script>
