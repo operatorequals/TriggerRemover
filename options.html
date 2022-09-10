@@ -7,12 +7,17 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="p-3">
-    <h1>Trigger Lists</h1>
-    <hr>    
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/options.js"></script>
+
+<!--     <h1>TriggerRemover Options</h1>
+    <hr>
+ -->    
     <form id="add">
+        <h2>Add new Triggers</h2>
         <div class="form-group">
-            <label for="name">Trigger Word</label>
-            <input type="text" class="form-control" name="word" id="word" placeholder="" required />
+            <label for="name">Trigger Word</i></label>
+            <input type="text" class="form-control" name="word" id="word" placeholder="last time you type it" required />
         </div>
         <div class="form-group">
             <label><b>Options:</b></label><br>
@@ -24,30 +29,34 @@
             <label>Whole Word</label> <br>
 
             <input type="checkbox" name="regex" id="regex" value="regex">
-            <label>[<i>Advanced</i>] Regular Expression </label> <br>
+            <label>[<i>Advanced</i>] Regular Expression (<a href="https://regex101.com/">reference</a>)</label> <br>
 
         </div>
         <button type="submit" class="btn btn-primary mt-3">
             Add Trigger Word
         </button>
     </form>
-    <br>
     <hr>
     <br>
     <form id="import">
-        <input type="file" id="trigger_list_file" required>
-        <input type="checkbox" name="overwrite_trigger_list" id="overwrite_trigger_list" value="overwrite_trigger_list">
-        <label><b> Overwrite existing?</b></label>
+        <h2>Import from file</h2>
+        <div class="form-group">
 
-        <br>
+            <input type="file" id="trigger_list_file" required>
+            <div class="form-group">
+                <input type="text" class="form-control" name="file_url" id="file_url" placeholder="Public URL of Trigger Word File" required />
+            </div>
+            <input type="checkbox" name="overwrite_trigger_list" id="overwrite_trigger_list" value="overwrite_trigger_list">
+            <label><b> Overwrite current list</b></label>
+        </div>
         <button type="submit" class="btn btn-primary mt-3">
             Import Trigger Word File
         </button>
     </form>
-    <br>
     <hr>
     <br>
     <form id="export">
+        <h2>Export to file</h2>
         <div class="form-group">
             <label for="list_name">List name</label>
             <input type="text" class="form-control" name="list_name" id="list_name" placeholder="my_trigger_list" required />
@@ -59,15 +68,12 @@
         </div>
 
         <input type="checkbox" name="obfuscate_trigger_list" id="obfuscate_trigger_list" value="obfuscate_trigger_list">
-        <label> Obfuscate (words will <b>not</b> be readable)</label>
+        <label> Obfuscate (words will <b>not</b> be readable in the file)</label>
 
         <br>
         <button type="submit" class="btn btn-primary mt-3">
             Export Trigger Word File
         </button>
     </form>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/options.js"></script>
-    <br>
 </body>
 </html>

@@ -22,8 +22,15 @@ String.prototype.fuzzy = function(term, ratio=0.7) {
 };
 */
 
+// Taken from:
+// https://stackoverflow.com/a/9310752
+function escapeRegExp(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
 function removeElement(elem) {
 	elem.remove()
+	// elem.innerText = "This content has been hidden by plugin"
 }
 
 function containsTrigger(videoElement){
@@ -31,29 +38,37 @@ function containsTrigger(videoElement){
 	console.log(videoElement.innerText)
 
 	for (let trigger_word in triggers){
-		regex_flags = "g"
+		regex_flags = "m"	// multiline is the default
+		key = trigger_word
+
 		checked_text = videoElement.innerText
 		console.log(`[+] Checking for '${trigger_word}'...`)
 		console.log(triggers[trigger_word])
 
-		console.log("[1] Checking case_sensitive")
+		// console.log("[1] Checking case_sensitive")
 		// If case_sensitive is NOT set - to lower case
-		if (!triggers[trigger_word]["case_sensitive"]) {
+		if (!triggers[key]["case_sensitive"]) {
 			regex_flags += "i"
-			// checked_text = checked_text.toLowerCase()
-			// trigger_word = trigger_word.toLowerCase()
 		}
 
-		console.log("[2] Checking whole_word")
+		// console.log("[2] Checking whole_word")
 		// If whole_word is set - create a regex with greedy whitespaces
-		if (triggers[trigger_word]["whole_word"]) {
-			trigger_word = `\\s*${trigger_word}\\s*`
+		if (triggers[key]["whole_word"]) {
+			trigger_word = `\\s+${trigger_word}\\s+`
+			console.log(`[2][1] Whole word ${trigger_word}`)
 		}
 
-		console.log("[+] Creating regex")
+		// If regex is not set - escape all regex characters
+		// console.log("[3] Checking regex")
+		if (!triggers[key]["regex"]) {
+			console.log("[3][1] Escape regex chars")
+			trigger_word = escapeRegExp(trigger_word)
+		}
+
+		console.log(`[+] Creating regex for '${trigger_word}'`)
 		trigger_word = new RegExp(trigger_word, regex_flags)
 
-		console.log("[!] Checking existence: ")
+		// console.log("[!] Checking existence: ")
 		console.log(checked_text.match(trigger_word))
 		if (checked_text.match(trigger_word)){
 			console.log(`[#] Word: ${trigger_word} found`)
@@ -68,7 +83,7 @@ function handleVideo(videoElement){
 	console.log("Handling Video:")
 	console.log(videoElement)
 	if (containsTrigger(videoElement)){
-		console.log("Removing...")
+		console.log("Removing Video...")
 		removeElement(videoElement)
 	}
 }
@@ -77,8 +92,17 @@ function handleChannel(channelElement){
 	console.log("Handling Channel:")
 	console.log(channelElement)
 	if (containsTrigger(channelElement)){
-		console.log("Removing...")
+		console.log("Removing Channel...")
 		removeElement(channelElement)
+	}
+}
+
+function handlePlaylist(playlistElement){
+	console.log("Handling Playlist:")
+	console.log(playlistElement)
+	if (containsTrigger(playlistElement)){
+		console.log("Removing Playlist...")
+		removeElement(playlistElement)
 	}
 }
 
@@ -95,11 +119,13 @@ function watchResults(targetNode){
 				// console.log(added_node)
 				videos = added_node.parentElement.querySelectorAll('ytd-video-renderer')
  				channels = added_node.querySelectorAll('ytd-channel-renderer')
+ 				playlists = added_node.querySelectorAll('ytd-playlist-renderer')
 				console.log("Added more videos/channels...")
 				// console.log(videos)
 
 				videos.forEach(handleVideo);
 				channels.forEach(handleChannel);
+				playlists.forEach(handlePlaylist);
 			});
 		}
 	};
@@ -107,20 +133,24 @@ function watchResults(targetNode){
 	console.log("Handling loaded videos/channels:")
 	videos = targetNode.querySelectorAll('ytd-video-renderer')
 	channels = targetNode.querySelectorAll('ytd-channel-renderer')
+	playlists = targetNode.querySelectorAll('ytd-playlist-renderer')
 	// Playlists: ytd-playlist-renderer
 
 	videos.forEach(handleVideo);
 	channels.forEach(handleChannel);
-
-	console.log("================")
-	console.log("Watching:")
-	console.log(targetNode)
+	playlists.forEach(handlePlaylist);
 
 	// Create an observer instance linked to the callback function
 	const observer = new MutationObserver(callback);
 
 	// Start observing the target node for configured mutations
 	observer.observe(targetNode, config);
+
+	console.log("================")
+	console.log("Watching:")
+	console.log(targetNode)
+
+
 }
 
 window.onload = function() {

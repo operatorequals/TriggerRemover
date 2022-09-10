@@ -1,9 +1,18 @@
+/*
+ Version determines if lists export backward compatibility
+*/
+const plugin_version = "0.0.1"
+
+function importable(version){
+    return plugin_version >= version
+}
+
 function showSuccess(message){
 	// Show success
     let successElm = document.createElement("div")
     successElm.innerHTML = message
     successElm.setAttribute("class", "alert alert-success")
-    document.body.appendChild(successElm);
+    document.body.prepend(successElm);
     setTimeout(() => {
     	successElm.remove()
     }, 1000)
@@ -44,7 +53,7 @@ $(document).ready(() => {
     formAddElm.on('submit', () => {
         const self = this;
 
-        //bring triggers from storagetriggers
+        //bring triggers from storage
         browser.storage.sync.get(['triggers'])
             .then((result) => {
                 let triggers = result.triggers;
@@ -57,9 +66,9 @@ $(document).ready(() => {
                 	whole_word: wholeWordElm.checked,
                 	regex: regexElm.checked,
                 }
-                console.log(triggers)
+                // console.log(triggers)
 
-                //set triggers in the storage
+                //store triggers in the storage
                 browser.storage.sync.set({triggers})
                     .then(() => {
                 	    nameElm.val('');
@@ -79,6 +88,12 @@ $(document).ready(() => {
 	    	file_contents = e.target.result;
 	    	file_contents_obj = JSON.parse(file_contents)
             meta = file_contents_obj.meta
+
+            // Backward compatibility test
+            // if (!importable(meta.version)){
+            //     showSuccess("List file is old and cannot be imported!")
+            // }
+
             // Keys are in Base64 - to not trigger the users
             if (meta.obfuscated){
                 triggers = {}
@@ -88,7 +103,7 @@ $(document).ready(() => {
             } else {
                 triggers = file_contents_obj.triggers
             }
-			console.log(triggers)
+			// console.log(triggers)
 
 			if (fileImportOwriteElm.checked) {
 				console.log("Overwriting!")
@@ -128,6 +143,8 @@ $(document).ready(() => {
             .then((result) => {
                 let triggers = result.triggers;
 
+                // If the file is needed obfuscated
+                // Turn all keys to Base64
                 if (obfuscated){
                     triggers_obf = {}
                     for (let trigger_entry in triggers){
@@ -140,7 +157,8 @@ $(document).ready(() => {
                     'meta': {
                         'name': listNameElm.val().trim(),
                         'author': listAuthorElm.val().trim(),
-                        'obfuscated':obfuscated
+                        'obfuscated': obfuscated,
+                        'version': plugin_version
                     },
                     'triggers': {...triggers}
                 }

@@ -1,0 +1,79 @@
+{
+ "meta": {
+  "name": "ed.triggers",
+  "author": "",
+  "obfuscated": true
+ },
+ "triggers": {
+  "ZXVnZW5pYVxzKmNvb25leQ==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "YW5vcmV4aQ==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": false
+  },
+  "YnVsaW1pYQ==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": false
+  },
+  "ZWF0aW5nXHMqZGlzb3JkZXI=": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "bG9zXHcrXHMqd2VpZ2h0": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "d2VpZ2h0XHMqbG9zcw==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "d2F0ZXJccypmYXN0": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "Z2V0XHMqdGhpbg==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "c3RvcFx3KlxzKmVhdFx3Kg==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "ZGlldA==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": false
+  },
+  "dGhpbnNwbw==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": false
+  },
+  "dGhpbnNwaXJhdGlvbg==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": false
+  },
+  "XFdUV1xX": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "VFc=": {
+   "case_sensitive": false,
+   "whole_word": true,
+   "regex": true
+  }
+ }
+}
