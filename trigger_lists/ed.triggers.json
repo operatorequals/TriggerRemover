@@ -1,8 +1,9 @@
 {
  "meta": {
-  "name": "ed.triggers",
-  "author": "",
-  "obfuscated": true
+  "name": "ed",
+  "author": "https://github.com/operatorequals/TriggerRemover/",
+  "obfuscated": true,
+  "version": "0.0.1"
  },
  "triggers": {
   "ZXVnZW5pYVxzKmNvb25leQ==": {
@@ -21,6 +22,36 @@
    "regex": false
   },
   "ZWF0aW5nXHMqZGlzb3JkZXI=": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "cHJvXHMqYW4=": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "cHJvLWFu": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": false
+  },
+  "Y2Fsb3JpXHcrXHMqY291bnQ=": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "dGhpblxzKmJvZHk=": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "ZmF0XHMqYm9keQ==": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "Ym9keVxzKmNoZWNraW5n": {
    "case_sensitive": false,
    "whole_word": false,
    "regex": true
