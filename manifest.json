@@ -22,12 +22,11 @@
     ],
     "options_ui": {
         "page": "options.html",
-        "browser_style": false
+        "browser_style": true
     },
     "background": {
         "scripts": ["assets/js/background.js"]
     },
-
 
     "browser_specific_settings": {
       "gecko": {
@@ -36,23 +35,18 @@
       }
     },
 
-
   "content_scripts": [
-    {
+    
+    { // Youtube 
       "matches": [
-        // Youtube search result pages
-        "https://*.youtube.com/results?*",
-        "https://youtube.com/results?*"
-
-        // Youtube Channel video pages
-        // "https://www.youtube.com/c/*/videos",
-        // "https://www.youtube.com/c/*"
-        ],
+        "https://*.youtube.com/**"
+      ],
       "js": [
         "assets/js/utils.js",
-        "assets/js/page-purifier-youtube-results.js"
+        "assets/js/page-purifier-youtube.js"
       ],
       "run_at": "document_end"
     }
+
   ]
 }

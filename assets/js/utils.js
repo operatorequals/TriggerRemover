@@ -1,7 +1,6 @@
 // ==================================================
 // Globals
 // ==================================================
-
 TRIGGERS = {}
 
 // ==================================================
@@ -13,6 +12,9 @@ function loadTriggers(){
         .then((result) => {
             TRIGGERS = result.triggers;
             console.log("Trigger words found: " + Object.keys(TRIGGERS).length)
+            for (trigger_word in TRIGGERS){
+                TRIGGERS[trigger_word]['matcher'] = createTriggerRegex(trigger_word, TRIGGERS[trigger_word])
+            }            
     });
 }
 
@@ -87,10 +89,10 @@ function findRootElement(tag, callback){
 
 function containsTrigger(element){
     checked_text = element.innerText
-    console.log(checked_text)
+    // console.log(checked_text)
     for (let trigger_word in TRIGGERS){
         trigger_entry = TRIGGERS[trigger_word]
-        trigger_word_regex = createTriggerRegex(trigger_word, trigger_entry)
+        trigger_word_regex = TRIGGERS[trigger_word]['matcher']
 
         if (checked_text.match(trigger_word_regex)){
             console.log(`[#] Word: ${trigger_word} found`)
