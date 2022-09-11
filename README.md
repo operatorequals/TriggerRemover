@@ -1,38 +1,58 @@
-# Firefox Personalized Alarms Add-on Tutorial
+# TriggerRemover ![logo](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/assets/images/icon48.png)
 
-Code repository for a SitePoint tutorial on how to create a Firefox add-on.
+A Firefox Addon that removes triggering content from pages based on Trigger Word lists.
 
-The finished add-on allows the user to create reocurring alarms, triggered at specified times with custom text. 
+Based on the [Alarm Tutorial](https://addons.mozilla.org/en-US/firefox/addon/personalized-alarms/) as it is my first WebExtension.
 
-It can be installed from the [Firefox Browser Add-ons page](https://addons.mozilla.org/en-US/firefox/addon/personalized-alarms/)
+## Usage
 
-## Installing as a Temporary Add-On
+![screenshot](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/img/screenshot-0-0-1.png)
 
-1. Clone repo
-2. Include the following in `manifest.json`:
-   ```json
-   "browser_specific_settings": {
-     "gecko": {
-       "id": "addon@example.com",
-       "strict_min_version": "42.0"
-     }
-   }
-   ```
-   _Make sure to remove it once you're ready to publish the package_
-3. Open Firefox, then choose _Add-ons and Themes_ from the menu, or using the shortcut <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd> 
-4. Click on the _Settings_ icon next to _Manage Your Extensions_ and choose _Debug Add-ons_
-5. Click on _Load Temporary Add-on_ and choose the `manifest.json` file from the cloned repo
-6. If everything was done correctly, you should see the following:
-   ![Personalized Alarms Add-on](https://uploads.sitepoint.com/wp-content/uploads/2021/05/1621350248s_ED818300CF5E841672F2C3FF9866554D5DA217143A51AE9342F11F975CA32D8E_1621239120552_Screenshotfrom2021-05-1710-44-41.jpg)
 
-## License
+## Webpages currently filtered
+* Youtube Search Results page
 
-SitePoint's code archives and code examples are licensed under the MIT license.
 
-Copyright © 2021 SitePoint
+### Trigger Lists
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+One can create lists either manually (`Add Trigger Word`) or by importing custom lists. This repository also provides sample lists under [`trigger_lists/`](https://github.com/operatorequals/TriggerRemover/tree/master/trigger_lists) directory.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+To import a list from the repository just click on the list file (don't worry the trigger words are always **not** readable) and then the `Raw` button just above and to the right of the file's contents. Then copy the URL and use it under `Import from file or URL`.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+#### Premade Trigger Lists
+
+I created some lists while testing the Addon. Keep in mind that while they indeed block a lot of stuff, they might not be perfect. If you have any suggestions, please see `Contributing` section below.
+
+* EDs - `https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/trigger_lists/ed.triggers.json`
+
+
+##### ... a lot more missing ...
+
+
+## Contributing
+
+To submit suggestions about Trigger List contents please open an Issue under [Repository Issues](https://github.com/operatorequals/TriggerRemover/issues) (creating a Github account is trivial).
+
+Please, if you have one or more words you wish to be added to one of the lists, use Base64 encoding on them (easily done in this [website](https://www.base64encode.net/)), so they are not readable while randomly browsing the Issues, as Trigger Words might affect some people even in this context.
+
+Issue Example:
+
+```
+title: [TriggerWord] Addition in ED list
+
+issue:
+I recently found that the word 'd2VpZ2h0IGxvc3M=' is very much encountered in Youtube Search Results, Comments and Google Results.
+
+Even when looking for words like 'fitness'.
+```
+
+
+
+## Please Read!
+
+This Web Extension might not be able to handle and properly hide *ALL* triggering content, as it is based on matching certain words and sequences in text. That means that, while it has been made with best intentions, it might not totally protect you from triggering.
+
+If you are frequently triggered by content on the Internet or you find yourself actively looking for triggering content sometimes, it might be a good idea to seek therapy.
+
+Stay strong...
