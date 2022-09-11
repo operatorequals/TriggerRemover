@@ -48,7 +48,10 @@
         // "https://www.youtube.com/c/*/videos",
         // "https://www.youtube.com/c/*"
         ],
-      "js": ["assets/js/page-purifier-youtube-results.js"],
+      "js": [
+        "assets/js/utils.js",
+        "assets/js/page-purifier-youtube-results.js"
+      ],
       "run_at": "document_end"
     }
   ]
