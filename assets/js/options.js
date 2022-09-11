@@ -18,6 +18,53 @@ function showSuccess(message){
     }, 1000)
 }
 
+function importList(file_contents_obj, overwrite){
+    console.log(file_contents_obj)
+    meta = file_contents_obj.meta
+
+    // // Backward compatibility test
+    // if (!importable(meta.version)){
+    //     showSuccess("List file is old and cannot be imported!")
+    // }
+
+    // Keys are in Base64 - to not trigger the users
+    if (meta.obfuscated){
+        triggers = {}
+        for (let trigger_entry in file_contents_obj.triggers){
+            triggers[atob(trigger_entry)] = file_contents_obj.triggers[trigger_entry]
+        }
+    } else {
+        triggers = file_contents_obj.triggers
+    }
+    console.log(`Adding ${Object.keys(triggers).length} words`)
+
+    if (overwrite) {
+        console.log("Overwriting!")
+        browser.storage.sync.set({triggers})
+            .then(() => {
+                showSuccess(`List imported successfully!`)
+        });
+    } else {
+        console.log("Updating!")
+        browser.storage.sync.get(['triggers'])
+            .then((result) => {
+                let old_triggers = result.triggers;
+                if (old_triggers) {
+                    triggers = {
+                        ...old_triggers,
+                        ...triggers
+                    }
+                }
+                console.log(triggers)
+
+                browser.storage.sync.set({triggers})
+                    .then(() => {
+                        showSuccess("List overwritten successfully!")
+                });
+        });
+    }
+}
+
 // Taken from:
 // https://stackoverflow.com/a/18197341
 function download(filename, text) {
@@ -43,6 +90,7 @@ $(document).ready(() => {
 
     const formImportElm = $('form#import');
     const fileImportElm = $('#trigger_list_file')[0];
+    const fileUrlImportElm = $('#trigger_list_url');
     const fileImportOwriteElm = $('#overwrite_trigger_list')[0];
 
     const formExportElm = $('form#export');
@@ -78,64 +126,48 @@ $(document).ready(() => {
         return false; //disable default form submit action
     });
 
-    formImportElm.on('submit', () => {
+    formImportElm.on('submit', (event) => {
+        event.preventDefault()
 	    const self = this;
+        const overwrite = fileImportOwriteElm.checked
+        remote_list = false
 
-	    file = fileImportElm.files[0]
-		const reader = new FileReader();
+        if (fileImportElm.files.length != 0){
+    	    file = fileImportElm.files[0]
+            remote_list = false
+        } else if (fileUrlImportElm.val()) {
+            fileUrl = fileUrlImportElm.val().trim()
+            remote_list = true
+        } else {
+            showSuccess("Neither URL or File was provided")
+            return false
+        }
 
-	    reader.onload = (e) => {
-	    	file_contents = e.target.result;
-	    	file_contents_obj = JSON.parse(file_contents)
-            meta = file_contents_obj.meta
+        console.log(`Importing List (remote list: ${remote_list})`)
 
-            // Backward compatibility test
-            // if (!importable(meta.version)){
-            //     showSuccess("List file is old and cannot be imported!")
-            // }
-
-            // Keys are in Base64 - to not trigger the users
-            if (meta.obfuscated){
-                triggers = {}
-                for (let trigger_entry in file_contents_obj.triggers){
-                    triggers[atob(trigger_entry)] = file_contents_obj.triggers[trigger_entry]
-                }
-            } else {
-                triggers = file_contents_obj.triggers
-            }
-			// console.log(triggers)
-
-			if (fileImportOwriteElm.checked) {
-				console.log("Overwriting!")
-                browser.storage.sync.set({triggers})
-                    .then(() => {
-                    	showSuccess("List imported successfully!")
-                });
-			} else {
-				console.log("Updating!")
-		        browser.storage.sync.get(['triggers'])
-		            .then((result) => {
-		                let old_triggers = result.triggers;
-                        if (old_triggers) {
-			                triggers = {
-			                	...old_triggers,
-			                	...triggers
-			                }
-        		        }
-						console.log(triggers)
-
-                        browser.storage.sync.set({triggers})
-   			                .then(() => {
-                    			showSuccess("List overwritten successfully!")
-            		    });
-		        });
-			}
-
-		} 
-		reader.readAsText(file);
+        if (!remote_list){  // Read from file
+    		const reader = new FileReader();
+    	    reader.onload = (e) => {
+    	    	file_contents = e.target.result;
+    	    	file_contents_obj = JSON.parse(file_contents)
+                importList(file_contents_obj, overwrite)
+    		}
+    		reader.readAsText(file);
+        } else {            // Read from URL
+            fetch(fileUrl)
+              .then((response) => response.json())
+              .then((data) => {
+                file_contents_obj = data
+                importList(file_contents_obj, overwrite)         
+            })
+              .catch((error) => {
+                  console.error('Error:', error);
+            });
+        }
     });
 
-    formExportElm.on('submit', () => {
+    formExportElm.on('submit', (event) => {
+        event.preventDefault()
         const self = this;
         obfuscated = listExportObfuscateElm.checked
 

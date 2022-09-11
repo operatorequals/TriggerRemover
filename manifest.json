@@ -2,6 +2,7 @@
     "name": "TriggerRemover",
     "version": "0.0.1",
     "description": "Remove Trigger-inducing content from pages",
+    "homepage_url": "https://github.com/operatorequals/TriggerRemover",
     "manifest_version": 2,
     "icons": {
         "16": "assets/images/icon16.png",
@@ -15,7 +16,9 @@
     },
     "permissions": [
         "storage",
-        "activeTab"
+        "activeTab",
+        // For importing remote Trigger Lists
+        "*://raw.githubusercontent.com/*"
     ],
     "options_ui": {
         "page": "options.html",
