@@ -10,7 +10,8 @@ Based on the [Alarm Tutorial](https://addons.mozilla.org/en-US/firefox/addon/per
 
 
 ## Webpages currently filtered
-* Youtube Search Results page
+* Youtube Search Results page (`/results`)
+* Youtube Related Videos (`/watch`)
 
 
 ### Trigger Lists
