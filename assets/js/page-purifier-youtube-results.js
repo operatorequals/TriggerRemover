@@ -29,19 +29,23 @@ function escapeRegExp(text) {
 }
 
 function removeElement(elem) {
+	/*
+		Maybe add feature to replace element with custom HTML
+		in the future
+	*/
 	elem.remove()
 	// elem.innerText = "This content has been hidden by plugin"
 }
 
-function containsTrigger(videoElement){
-	console.log("-> Checking:")
-	console.log(videoElement.innerText)
+function containsTrigger(element){
+	// console.log("-> Checking:")
+	console.log(element.innerText)
 
 	for (let trigger_word in triggers){
 		regex_flags = "m"	// multiline is the default
 		key = trigger_word
 
-		checked_text = videoElement.innerText
+		checked_text = element.innerText
 		console.log(`[+] Checking for '${trigger_word}'...`)
 		console.log(triggers[trigger_word])
 
@@ -79,30 +83,30 @@ function containsTrigger(videoElement){
 	return false
 }
 
-function handleVideo(videoElement){
-	console.log("Handling Video:")
-	console.log(videoElement)
-	if (containsTrigger(videoElement)){
-		console.log("Removing Video...")
-		removeElement(videoElement)
+
+function handleElement(elem){
+	console.log("Handling Element:")
+	console.log(elem)
+	if (containsTrigger(elem)){
+		console.log("Removing Element...")
+		removeElement(elem)
 	}
 }
 
-function handleChannel(channelElement){
-	console.log("Handling Channel:")
-	console.log(channelElement)
-	if (containsTrigger(channelElement)){
-		console.log("Removing Channel...")
-		removeElement(channelElement)
-	}
+const elementHandlers = {
+	// Results page
+	'ytd-video-renderer' : handleElement,
+	'ytd-channel-renderer' : handleElement,
+	'ytd-playlist-renderer' : handleElement,
+
+	// Front page
+	'ytd-rich-item-renderer' : handleElement
 }
 
-function handlePlaylist(playlistElement){
-	console.log("Handling Playlist:")
-	console.log(playlistElement)
-	if (containsTrigger(playlistElement)){
-		console.log("Removing Playlist...")
-		removeElement(playlistElement)
+function removeTriggersFromElement(node){
+	for (tag in elementHandlers){
+		elems = node.querySelectorAll(tag)
+		elems.forEach(elementHandlers[tag])
 	}
 }
 
@@ -116,29 +120,13 @@ function watchResults(targetNode){
 		for (const mutation of mutationList) {
 
 			mutation.addedNodes.forEach(function(added_node) {
-				// console.log(added_node)
-				videos = added_node.parentElement.querySelectorAll('ytd-video-renderer')
- 				channels = added_node.querySelectorAll('ytd-channel-renderer')
- 				playlists = added_node.querySelectorAll('ytd-playlist-renderer')
-				console.log("Added more videos/channels...")
-				// console.log(videos)
-
-				videos.forEach(handleVideo);
-				channels.forEach(handleChannel);
-				playlists.forEach(handlePlaylist);
+				removeTriggersFromElement(added_node.parentElement)
 			});
 		}
 	};
 
-	console.log("Handling loaded videos/channels:")
-	videos = targetNode.querySelectorAll('ytd-video-renderer')
-	channels = targetNode.querySelectorAll('ytd-channel-renderer')
-	playlists = targetNode.querySelectorAll('ytd-playlist-renderer')
-	// Playlists: ytd-playlist-renderer
-
-	videos.forEach(handleVideo);
-	channels.forEach(handleChannel);
-	playlists.forEach(handlePlaylist);
+	console.log("Handling already loaded videos/channels:")
+	removeTriggersFromElement(targetNode)
 
 	// Create an observer instance linked to the callback function
 	const observer = new MutationObserver(callback);
@@ -149,26 +137,19 @@ function watchResults(targetNode){
 	console.log("================")
 	console.log("Watching:")
 	console.log(targetNode)
-
-
 }
 
 window.onload = function() {
 
-
 	console.log("Loaded!")
+
+	// Look at the whole document and find the Videos container element
 	const contentsObserver = new MutationObserver((mutations, obs) => {
 
 		const targetNode = document.querySelector('ytd-app');
-		// const targetNode = document.getElementById('content');
-		// const targetNode = document.querySelector('div#content.ytd-app');
-		// const targetNode = document.getElementById('contents');
-		// const targetNode = document.getElementById('container');
-		// const targetNode = document.querySelector('ytd-section-list-renderer')
-		// const targetNode = document.querySelector('div#container.ytd-search')
-		// const targetNode = document
 
 		if (targetNode) {
+			// When the element is found stop looking!
 			obs.disconnect();
 			watchResults(targetNode)
 			return;
