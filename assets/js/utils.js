@@ -97,7 +97,7 @@ function containsTrigger(element){
 
         if (checked_text.match(trigger_word_regex)){
             console.log(`[#] Word: ${trigger_word} found`)
-            countHit(trigger_word)
+            // countHit(trigger_word)
             return true
         }
     }

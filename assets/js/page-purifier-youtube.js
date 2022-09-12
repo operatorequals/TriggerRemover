@@ -1,4 +1,6 @@
 
+MainObserver = null
+
 const elementHandlers = {
 	// Results page
 	'/results': {
@@ -52,10 +54,10 @@ function watchPage(targetNode){
 	removeTriggersFromElement(targetNode)
 
 	// Create an observer instance linked to the callback function
-	const observer = new MutationObserver(callback);
+	MainObserver = new MutationObserver(callback);
 
 	// Start observing the target node for configured mutations
-	observer.observe(targetNode, config);
+	MainObserver.observe(targetNode, config);
 
 	console.log("================")
 	console.log("[TriggerRemover] Watching Elements under:")
@@ -68,14 +70,17 @@ async function init(){
 	enabled = await getWebExtEnabled()
 	if (!enabled){
 		console.log(`[TriggerRemover] plugin is disabled. Exiting...`)
+		if (MainObserver) MainObserver.disconnect()
 		return false
 	}
 
 	// If current path is not handled
 	if (PATHS.indexOf(location.pathname) == -1){
 		console.log(`[TriggerRemover] No handlers for page '${location}'. Exiting...`)
+		if (MainObserver) MainObserver.disconnect()
 		return false
 	}
+
 	loadTriggers() // Loads the TRIGGERS global
 	findRootElement('ytd-app', watchPage)
 	console.log(`[TriggerRemover] Loaded Youtube Page ${location.pathname}!`)
