@@ -22,7 +22,7 @@
     ],
     "options_ui": {
         "page": "options.html",
-        "browser_style": true
+        "browser_style": false
     },
     "background": {
         "scripts": ["assets/js/background.js"]
@@ -42,6 +42,7 @@
         "https://*.youtube.com/**"
       ],
       "js": [
+        "assets/js/trigger-remover.js",
         "assets/js/utils.js",
         "assets/js/page-purifier-youtube.js"
       ],

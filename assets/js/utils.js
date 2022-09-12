@@ -2,6 +2,7 @@
 // Globals
 // ==================================================
 TRIGGERS = {}
+// HITS = {}
 
 // ==================================================
 // Functions
@@ -96,6 +97,7 @@ function containsTrigger(element){
 
         if (checked_text.match(trigger_word_regex)){
             console.log(`[#] Word: ${trigger_word} found`)
+            countHit(trigger_word)
             return true
         }
     }
@@ -104,12 +106,16 @@ function containsTrigger(element){
 }
 
 
+// function countHit(trigger_word){
+//     if (!HITS[trigger_word])
+//         HITS[trigger_word] = 0
+//     else
+//         HITS[trigger_word]++
+// }
+
 // ==================================================
 // Initial Calls
 // ==================================================
-
-loadTriggers() // Loads the TRIGGERS global
-
 
 
 // ==================================================
@@ -131,4 +137,4 @@ String.prototype.fuzzy = function(term, ratio=0.7) {
 };
 */
 
-console.log("[TriggerRemover] Utils script loaded")
+console.log("[TriggerRemover] Loaded Utility script")

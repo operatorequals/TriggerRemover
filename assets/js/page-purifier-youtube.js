@@ -62,13 +62,21 @@ function watchPage(targetNode){
 	console.log(targetNode)
 }
 
-function init(){
+async function init(){
+
+	// If plugin is disabled
+	enabled = await getWebExtEnabled()
+	if (!enabled){
+		console.log(`[TriggerRemover] plugin is disabled. Exiting...`)
+		return false
+	}
 
 	// If current path is not handled
 	if (PATHS.indexOf(location.pathname) == -1){
 		console.log(`[TriggerRemover] No handlers for page '${location}'. Exiting...`)
 		return false
 	}
+	loadTriggers() // Loads the TRIGGERS global
 	findRootElement('ytd-app', watchPage)
 	console.log(`[TriggerRemover] Loaded Youtube Page ${location.pathname}!`)
 }
