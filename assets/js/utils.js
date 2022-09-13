@@ -2,7 +2,18 @@
 // Globals
 // ==================================================
 TRIGGERS = {}
-// HITS = {}
+
+SETTINGS = WebExtSettingsDefault
+EXPOSURE = SETTINGS['exposure']
+ENABLED  = SETTINGS['enabled']
+
+getWebExtSettings()
+    .then((results) => {
+        console.log(results)
+        SETTINGS = results
+        EXPOSURE = SETTINGS['exposure']
+        ENABLED  = SETTINGS['enabled']
+    });
 
 // ==================================================
 // Functions
@@ -87,6 +98,19 @@ function findRootElement(tag, callback){
     });    
 }
 
+/*
+This function returns boolean depending on
+the Exposure Level of the Extension.
+
+If EXPOSURE value is closer to 100 it tends to
+return 'false', EXPOSURE closer to 0 the function
+returns more 'true' values.
+*/
+function decideExposure(){
+    var rand = parseInt((Math.random() * 100), 10)
+    console.log(`[$] Exposure: '${EXPOSURE} <= ${rand}' - ${(EXPOSURE <= rand)}`)
+    return (EXPOSURE <= rand)
+}
 
 function containsTrigger(element){
     checked_text = element.innerText
@@ -98,12 +122,14 @@ function containsTrigger(element){
         if (checked_text.match(trigger_word_regex)){
             console.log(`[#] Word: ${trigger_word} found`)
             // countHit(trigger_word)
-            return true
+            return decideExposure()
         }
     }
     console.log("[#] Clear, moving on...")
     return false
 }
+
+
 
 
 // function countHit(trigger_word){

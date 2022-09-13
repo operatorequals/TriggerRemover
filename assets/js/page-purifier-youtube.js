@@ -67,8 +67,8 @@ function watchPage(targetNode){
 async function init(){
 
 	// If plugin is disabled
-	enabled = await getWebExtEnabled()
-	if (!enabled){
+	settings = await getWebExtSettings()
+	if (!settings.enabled){
 		console.log(`[TriggerRemover] plugin is disabled. Exiting...`)
 		if (MainObserver) MainObserver.disconnect()
 		return false

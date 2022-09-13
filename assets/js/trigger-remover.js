@@ -1,27 +1,41 @@
 const WebExtName = "TriggerRemover"
-const WebExtVersion = "0.0.1"
+const WebExtVersion = "0.0.2"
 const WebExtAuthor = "https://github.com/operatorequals"
 
 const WebExtUrl = browser.runtime.getURL("/")
 
-
-async function getWebExtEnabled(){
-	result = await browser.storage.sync.get(['enabled'])
-	console.log("Storage:" + result.enabled)
-    if (result.enabled === undefined) {
-		return true
-	} else {
-		return result.enabled
-	}
+const WebExtSettingsDefault = {
+	'enabled': true,
+	'exposure': 0,
 }
 
 
+async function getWebExtSettings(){
+	result = await browser.storage.sync.get(['settings'])
+	if (result.settings === undefined){
+		return WebExtSettingsDefault
+	} else {
+		return result.settings
+	}
+}
+
+async function setWebExtExposure(exposure_level){
+	if (exposure_level > 100 || exposure_level < 0)
+		throw Error(`[${WebExtName}] Exposure level value outside [0,100]`)
+	settings = await getWebExtSettings()
+	settings['exposure'] = exposure_level
+    await browser.storage.sync.set({'settings': settings})
+	console.log(`[${WebExtName}] Exposure Level set to: ${settings['exposure']}%`)
+	return settings['exposure']
+}
+
 async function toggleWebExtEnabled(){
-	WebExtEnabled = await getWebExtEnabled()
-	WebExtEnabled = !WebExtEnabled
-    await browser.storage.sync.set({'enabled': WebExtEnabled})
-	console.log(`[${WebExtName}] WebExtEnabled toggled: ${WebExtEnabled}`)
-	return WebExtEnabled
+	settings = await getWebExtSettings()
+	settings['enabled'] = !settings['enabled']
+
+    await browser.storage.sync.set({'settings': settings})
+	console.log(`[${WebExtName}] WebExtEnabled toggled: ${settings['enabled']}`)
+	return settings['enabled']
 }
 
 console.log(`[${WebExtName}] Loaded Main Script`)

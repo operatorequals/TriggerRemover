@@ -1,9 +1,23 @@
+const ExposureLevelMessages = {
+    0 :  "Will block <b>ALL</b> found Triggers",
+    30:  "<b>Some</b> Triggers here and there",
+    70:  "A bit <b>more</b> going on",
+    99:  "Closer to the <b>uncensored Internet</b>!",
+    100: "You are attending the Internet. <b>Congratulations!</b>",
+}
+
 $(document).ready(() => {
 	toggleBtn = document.getElementById("toggle-icon")
 	optionsLink = document.getElementById("optionsLink")
 	optionsLink.href = browser.runtime.getURL("options.html")
 
-	drawExtensionEnabled()
+    exposureLabelMessage = document.getElementById("exposure_label")
+    exposureLabelRatio = document.getElementById("exposure_ratio")
+    exposureSlider = document.getElementById("exposure_slider")
+
+
+    drawExtensionEnabled()
+    drawExposureLevel()
     // const listElement = $('#alarmsList');
     
     // browser.storage.sync.get(['alarms'])
@@ -46,15 +60,38 @@ $(document).ready(() => {
     }
 
     function drawExtensionEnabled() {
-		getWebExtEnabled()
+        getWebExtSettings()
 			.then((result) => {
-				console.log("Drawing: " + result)
-				if (result)
+				console.log("Drawing: " + result.enabled)
+				if (result.enabled)
 		    		toggleBtn.src = "assets/images/switch-on.png"
 		    	else
 		    		toggleBtn.src = "assets/images/switch-off.png"
 		});
 	}
+
+    function drawExposureLevel() {
+        getWebExtSettings()
+            .then((result) => {
+                console.log("Drawing: " + result.exposure)
+                value = parseInt(result.exposure, 10)
+                exposureLabelRatio.innerHTML = value
+                exposureSlider.value = value
+                for (let val in ExposureLevelMessages){
+                    if (value <= val){
+                    exposureLabelMessage.innerHTML = ExposureLevelMessages[val]
+                    break
+                }
+        }
+
+        });
+    }
+
+    exposureSlider.oninput = function() {
+        value = parseInt(this.value, 10)
+        setWebExtExposure(value)
+        drawExposureLevel()
+    }
 
     $("#toggle").on('click', function () {
     	// Toggle the global
