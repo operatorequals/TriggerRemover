@@ -1,0 +1,20 @@
+{
+ "meta": {
+  "name": "Trigger Warning notations",
+  "author": "https://github.com/operatorequals/TriggerRemover",
+  "obfuscated": false,
+  "version": "0.0.2"
+ },
+ "triggers": {
+  "\\W+T\\W*W\\W+": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  },
+  "\\W*Trigger\\W*Warnings?\\W*": {
+   "case_sensitive": false,
+   "whole_word": false,
+   "regex": true
+  }
+ }
+}

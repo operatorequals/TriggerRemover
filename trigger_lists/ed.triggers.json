@@ -1,9 +1,9 @@
 {
  "meta": {
-  "name": "ed",
-  "author": "https://github.com/operatorequals/TriggerRemover/",
+  "name": "Eating Disorder Trigger Words",
+  "author": "https://github.com/operatorequals/TriggerRemover",
   "obfuscated": true,
-  "version": "0.0.1"
+  "version": "0.0.2"
  },
  "triggers": {
   "ZXVnZW5pYVxzKmNvb25leQ==": {

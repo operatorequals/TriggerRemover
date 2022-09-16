@@ -60,7 +60,7 @@ function importList(file_contents_obj, overwrite){
 
                 browser.storage.sync.set({'triggers':triggers})
                     .then(() => {
-                        showMessage(`List overwritten successfully (${word_count} words)!`, true)
+                        showMessage(`List updated successfully (${word_count} words)!`, true)
                 });
         });
     }
@@ -152,7 +152,9 @@ $(document).ready(() => {
     const listAuthorElm = $('#list_author');
     const listExportObfuscateElm = $('#obfuscate_trigger_list')[0];
 
+    // Preset List toggle actions
     $("input#ed-list-url").on('change', toggleRemoteList)
+    $("input#tw-list-url").on('change', toggleRemoteList)
 
 
     formAddElm.on('submit', () => {
@@ -252,7 +254,7 @@ $(document).ready(() => {
                         'name': listNameElm.val().trim(),
                         'author': listAuthorElm.val().trim(),
                         'obfuscated': obfuscated,
-                        'version': plugin_version
+                        'version': WebExtVersion
                     },
                     'triggers': {...triggers}
                 }
