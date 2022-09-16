@@ -27,6 +27,10 @@ function handleElement(elem){
 }
 
 function removeTriggersFromElement(node){
+	// Chrome sometimes brings 'null' added nodes here
+	if (node === null){
+		return
+	}
 	// Element tags are grouped per page
 	// so we don't look for everything everywhere
 	for (tag in elementHandlers[location.pathname]){

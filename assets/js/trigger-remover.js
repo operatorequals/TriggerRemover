@@ -9,6 +9,16 @@ const WebExtSettingsDefault = {
 	'exposure': 0,
 }
 
+async function getWebExtTriggers(){
+       result = await browser.storage.sync.get('triggers')
+       ret = {}
+       if (result.triggers !== undefined){
+           ret = result.triggers
+       }
+       console.log("Trigger words found: " + Object.keys(ret).length)
+       console.log(result.triggers)
+       return ret
+}
 
 async function getWebExtSettings(){
 	result = await browser.storage.sync.get(['settings'])

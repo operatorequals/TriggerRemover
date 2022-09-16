@@ -24,9 +24,9 @@
         "page": "options.html",
         "browser_style": false
     },
-    "background": {
-        "scripts": ["assets/js/background.js"]
-    },
+    // "background": {
+    //     "scripts": ["assets/js/background.js"]
+    // },
 
     "browser_specific_settings": {
       "gecko": {
@@ -42,6 +42,7 @@
         "https://*.youtube.com/**"
       ],
       "js": [
+        "assets/js/lib/browser-polyfill.min.js",
         "assets/js/trigger-remover.js",
         "assets/js/utils.js",
         "assets/js/page-purifier-youtube.js"
