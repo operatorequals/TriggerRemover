@@ -10,13 +10,16 @@ function importable(version){
 function showMessage(message, success){
     type = 'alert-danger'
     if (success) {type = 'alert-success'}
-    let successElm = document.createElement("div")
-    successElm.innerHTML = message
-    successElm.setAttribute("class", `alert ${type}`)
-    document.body.prepend(successElm);
+    let messageElm = document.createElement("div")
+    messageElm.innerHTML = message
+    messageElm.setAttribute("class", `alert ${type}`)
+    document.body.prepend(messageElm);
+    // To keep the message on screen long enough
+    // to be read
+    timeout = message.split(" ").length * 350
     setTimeout(() => {
-    	successElm.remove()
-    }, 1000)
+    	messageElm.remove()
+    }, timeout)
 }
 
 function importList(file_contents_obj, overwrite){
@@ -150,7 +153,12 @@ $(document).ready(() => {
     		const reader = new FileReader();
     	    reader.onload = (e) => {
     	    	file_contents = e.target.result;
-    	    	file_contents_obj = JSON.parse(file_contents)
+                try {
+        	    	file_contents_obj = JSON.parse(file_contents)
+                } catch (e) {
+                    showMessage("Could not parse Trigger Word List", false)
+                    return
+                }
                 importList(file_contents_obj, overwrite)
     		}
     		reader.readAsText(file);
@@ -162,7 +170,7 @@ $(document).ready(() => {
                 importList(file_contents_obj, overwrite)         
             })
               .catch((error) => {
-                  console.error('Error:', error);
+                showMessage("URL could not be reached or did not contain Trigger Word List", false)
             });
         }
     });
