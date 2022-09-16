@@ -7,11 +7,12 @@ function importable(version){
     return plugin_version >= version
 }
 
-function showSuccess(message){
-	// Show success
+function showMessage(message, success){
+    type = 'alert-danger'
+    if (success) {type = 'alert-success'}
     let successElm = document.createElement("div")
     successElm.innerHTML = message
-    successElm.setAttribute("class", "alert alert-success")
+    successElm.setAttribute("class", `alert ${type}`)
     document.body.prepend(successElm);
     setTimeout(() => {
     	successElm.remove()
@@ -42,7 +43,7 @@ function importList(file_contents_obj, overwrite){
         console.log("Overwriting!")
         browser.storage.sync.set({triggers})
             .then(() => {
-                showSuccess(`List imported successfully!`)
+                showMessage(`List imported successfully!`, true)
         });
     } else {
         console.log("Updating!")
@@ -59,7 +60,7 @@ function importList(file_contents_obj, overwrite){
 
                 browser.storage.sync.set({triggers})
                     .then(() => {
-                        showSuccess("List overwritten successfully!")
+                        showMessage("List overwritten successfully!", true)
                 });
         });
     }
@@ -120,7 +121,7 @@ $(document).ready(() => {
                 browser.storage.sync.set({triggers})
                     .then(() => {
                 	    nameElm.val('');
-                    	showSuccess("Word added successfully!")
+                        showMessage("Word added successfully!", true)
                 });
             });
         return false; //disable default form submit action
@@ -139,7 +140,7 @@ $(document).ready(() => {
             fileUrl = fileUrlImportElm.val().trim()
             remote_list = true
         } else {
-            showSuccess("Neither URL or File was provided")
+            showMessage("Neither URL or File was provided", false)
             return false
         }
 
@@ -197,7 +198,7 @@ $(document).ready(() => {
 
                 console.log(download_obj)
                 download(listNameElm.val().trim()+".triggers.json", JSON.stringify(download_obj, null, 1))
-                showSuccess("List exported successfully!")
+                showMessage("List exported successfully!", true)
             });
     });
 
