@@ -40,13 +40,14 @@ function importList(file_contents_obj, overwrite){
     } else {
         triggers = file_contents_obj.triggers
     }
+    word_count = Object.keys(triggers).length
     console.log(`Adding ${Object.keys(triggers).length} words`)
 
     if (overwrite) {
         console.log("Overwriting!")
         browser.storage.sync.set({triggers})
             .then(() => {
-                showMessage(`List imported successfully!`, true)
+                showMessage(`List imported successfully (${word_count} words)!`, true)
         });
     } else {
         console.log("Updating!")
@@ -63,7 +64,7 @@ function importList(file_contents_obj, overwrite){
 
                 browser.storage.sync.set({triggers})
                     .then(() => {
-                        showMessage("List overwritten successfully!", true)
+                        showMessage(`List overwritten successfully (${word_count} words)!`, true)
                 });
         });
     }
