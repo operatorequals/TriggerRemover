@@ -58,3 +58,11 @@ This Web Extension might not be able to handle and properly hide *ALL* triggerin
 If you are frequently triggered by content on the Internet or you find yourself actively looking for triggering content sometimes, it might be a good idea to seek therapy.
 
 Stay strong...
+
+
+
+## Donations
+In case my work helped you, you can always buy me a beer or a liter of gas [through the Internet](https://www.buymeacoffee.com/operatorequals) or in case you meet me personally.
+In the second case we can talk about mental conditions and how the way we grow up inherently fucks us up, or what goes on with parenting, or maybe [the Rat Park](https://en.wikipedia.org/wiki/Rat_Park) experiment, the duality of mind and body in "western" culture and anything you'll bring up :)
+
+[![donation](https://cdn-images-1.medium.com/max/738/1*G95uyokAH4JC5Ppvx4LmoQ@2x.png)](https://www.buymeacoffee.com/operatorequals)
