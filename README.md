@@ -1,6 +1,7 @@
 # TriggerRemover ![logo](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/assets/images/icon48.png)
 
-A Firefox Addon that removes triggering content from pages based on Trigger Word lists.
+A Browser Addon/Extension that removes triggering content from pages based on Trigger Word lists.
+Works both on Firefox and Chrome (and possibly others) using Mozilla's [`webextension-polyfill`](https://github.com/mozilla/webextension-polyfill) library.
 
 Based on the [Alarm Tutorial](https://addons.mozilla.org/en-US/firefox/addon/personalized-alarms/) as it is my first WebExtension.
 
