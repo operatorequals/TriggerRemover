@@ -1,10 +1,6 @@
-/*
- Version determines if lists export backward compatibility
-*/
-const plugin_version = "0.0.1"
 
 function importable(version){
-    return plugin_version >= version
+    return WebExtVersion >= version
 }
 
 function showMessage(message, success){
@@ -47,7 +43,7 @@ function importList(file_contents_obj, overwrite){
         console.log("Overwriting!")
         browser.storage.sync.set({triggers})
             .then(() => {
-                showMessage(`List imported successfully (${word_count} words)!`, true)
+                showMessage(`List overwritten successfully (${word_count} words)!`, true)
         });
     } else {
         console.log("Updating!")
@@ -62,12 +58,68 @@ function importList(file_contents_obj, overwrite){
                 }
                 console.log(triggers)
 
-                browser.storage.sync.set({triggers})
+                browser.storage.sync.set({'triggers':triggers})
                     .then(() => {
                         showMessage(`List overwritten successfully (${word_count} words)!`, true)
                 });
         });
     }
+}
+
+function removeList(file_contents_obj){
+    meta = file_contents_obj.meta
+    if (meta.obfuscated){
+        triggers = {}
+        for (let trigger_entry in file_contents_obj.triggers){
+            triggers[atob(trigger_entry)] = file_contents_obj.triggers[trigger_entry]
+        }
+    } else {
+        triggers = file_contents_obj.triggers
+    }
+    console.log(`Removing ${Object.keys(triggers).length} words`)
+
+    browser.storage.sync.get(['triggers'])
+        .then((result) => {
+            word_count = 0
+            new_triggers = result.triggers
+            // Delete each world that came from the list
+            for (trigger_word in triggers){
+                console.log(`[-] Removing ${trigger_word}`)
+                if (new_triggers[trigger_word]){
+                    delete new_triggers[trigger_word]
+                    word_count++
+                }
+            }
+            browser.storage.sync.set({'triggers': new_triggers})
+                .then(() => {
+                    showMessage(`Trigger Words removed (${word_count} words)!`, true)
+            });
+        });
+}
+
+
+function toggleRemoteList(event){
+    list_id = event.target.name
+    enabled = event.target.checked
+    fileUrl = `https://raw.githubusercontent.com/\
+operatorequals/TriggerRemover/master/\
+trigger_lists/${list_id}.triggers.json`
+    // Get the selected list from the public lists
+    console.log(fileUrl)
+    console.log(enabled)
+    fetch(fileUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        file_contents_obj = data
+        if (enabled)
+            importList(file_contents_obj, false)
+        else
+            removeList(file_contents_obj)
+    })
+      .catch((error) => {
+        showMessage("URL could not be reached or did not contain Trigger Word List", false)
+    });
+
 }
 
 // Taken from:
@@ -76,15 +128,12 @@ function download(filename, text) {
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
-
   element.style.display = 'none';
+  
   document.body.appendChild(element);
-
   element.click();
-
   document.body.removeChild(element);
 }
-
 
 $(document).ready(() => {
     const formAddElm = $('form#add');
@@ -102,6 +151,9 @@ $(document).ready(() => {
     const listNameElm = $('#list_name');
     const listAuthorElm = $('#list_author');
     const listExportObfuscateElm = $('#obfuscate_trigger_list')[0];
+
+    $("input#ed-list-url").on('change', toggleRemoteList)
+
 
     formAddElm.on('submit', () => {
         const self = this;
@@ -122,7 +174,7 @@ $(document).ready(() => {
                 // console.log(triggers)
 
                 //store triggers in the storage
-                browser.storage.sync.set({triggers})
+                browser.storage.sync.set({'triggers': triggers})
                     .then(() => {
                 	    nameElm.val('');
                         showMessage("Word added successfully!", true)
