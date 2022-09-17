@@ -1,8 +1,10 @@
-name: "Release"
+name: "Release Firefox"
 on:
   push:
     tags:
       - 'v*.*.*'
+      
+  workflow_dispatch:
 
 jobs:
   sign:
