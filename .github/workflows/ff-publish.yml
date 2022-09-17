@@ -23,12 +23,12 @@ jobs:
           filename: "{name}-{version}.xpi"
           ignoreFiles: '["trigger_lists/", "README.md", "index.html", "assets/js/index.js"]'
 
-      - name: Upload a Build Artifact
+      - name: Upload a Unsigned XPI
         uses: actions/upload-artifact@v3.1.0
         with:
           name: triggerremover.unsigned.xpi
           path: ${{ steps.web-ext-build.outputs.target }}
-            
+
       - name: "web-ext sign"
         id: web-ext-sign
         uses: kewisch/action-web-ext@v1
@@ -40,6 +40,12 @@ jobs:
           apiSecret: ${{ secrets.FIREFOX_API_SECRET }}
           timeout: 900000
           verbose: true
+
+      - name: Upload a Signed XPI
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: triggerremover.signed.xpi
+          path: ${{ steps.web-ext-sign.outputs.target }}
 
       - name: "Create Release"
         uses: softprops/action-gh-release@v1
