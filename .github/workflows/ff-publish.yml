@@ -14,19 +14,12 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v1
 
-      - name: "web-ext lint"
-        id: web-ext-lint
-        uses: kewisch/action-web-ext@v1
-        with:
-          cmd: lint
-          source: ./
-
       - name: "web-ext build"
         id: web-ext-build
         uses: kewisch/action-web-ext@v1
         with:
           cmd: build
-          source: ./
+          source: .
           filename: "{name}-{version}.xpi"
 
       - name: Upload a Build Artifact
