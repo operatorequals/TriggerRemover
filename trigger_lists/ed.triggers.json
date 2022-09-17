@@ -96,14 +96,14 @@
    "whole_word": false,
    "regex": false
   },
-  "XFdUV1xX": {
+  "bG9zZVxzKlx3KlxzKmZhdA==": {
    "case_sensitive": false,
    "whole_word": false,
    "regex": true
   },
-  "VFc=": {
+  "XGQrXHMqKHBvdW5kcz98bGJzfGdyYW1zP3xraWxvcz98a2dzP3xibWl8az9jYWxzPyk=": {
    "case_sensitive": false,
-   "whole_word": true,
+   "whole_word": false,
    "regex": true
   }
  }
