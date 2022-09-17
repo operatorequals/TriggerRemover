@@ -9,6 +9,18 @@ const WebExtSettingsDefault = {
 	'exposure': 0,
 }
 
+const ExposureLevelMessages = {
+    0 :  "Will block <b>ALL</b> found Triggers",
+    30:  "<b>Some</b> Triggers here and there",
+    70:  "A bit <b>more</b> going on",
+    99:  "Closer to the <b>uncensored Internet</b>!",
+    100: "You are attending the Internet. <b>Congratulations!</b>",
+}
+
+const PresetListKeys = [
+	"tw", "ed",
+]
+
 async function getWebExtTriggers(){
        result = await browser.storage.sync.get('triggers')
        ret = {}

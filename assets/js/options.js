@@ -153,11 +153,11 @@ $(document).ready(() => {
     const listExportObfuscateElm = $('#obfuscate_trigger_list')[0];
 
     // Preset List toggle actions
-    $("input#ed-list-url").on('change', toggleRemoteList)
-    $("input#tw-list-url").on('change', toggleRemoteList)
+    for (key of PresetListKeys)
+        $(`input#${key}-list-url`).on('change', toggleRemoteList)
 
 
-    formAddElm.on('submit', () => {
+    formAddElm.on('submit', (event) => {
         const self = this;
 
         //bring triggers from storage
@@ -167,13 +167,13 @@ $(document).ready(() => {
                 if (!triggers) {
                     triggers = {};
                 }
-
-                triggers[nameElm.val().trim()] = {
+                // console.log(triggers)
+                trigger_word = nameElm.val().trim()
+                triggers[trigger_word] = {
                 	case_sensitive: caseSensitiveElm.checked,
                 	whole_word: wholeWordElm.checked,
                 	regex: regexElm.checked,
                 }
-                // console.log(triggers)
 
                 //store triggers in the storage
                 browser.storage.sync.set({'triggers': triggers})
@@ -181,8 +181,36 @@ $(document).ready(() => {
                 	    nameElm.val('');
                         showMessage("Word added successfully!", true)
                 });
-            });
+        });
         return false; //disable default form submit action
+    });
+
+    $('button#del-word-button').on('click', (event) => {
+        //bring triggers from storage
+        trigger_word = nameElm.val().trim()
+        if (!trigger_word) return false
+        browser.storage.sync.get(['triggers'])
+            .then((result) => {
+                let triggers = result.triggers;
+                if (!triggers) {
+                    triggers = {};
+                }
+                // console.log(triggers)
+                trigger_word = nameElm.val().trim()
+                if (triggers[trigger_word]){
+                    delete triggers[trigger_word]
+                } else {
+                    showMessage("Word not found in stored Trigger List!", false)
+                    return false
+                }
+
+                //store triggers in the storage
+                browser.storage.sync.set({'triggers': triggers})
+                    .then(() => {
+                        nameElm.val('');
+                        showMessage("Word deleted successfully!", true)
+                });
+        });
     });
 
     formImportElm.on('submit', (event) => {
@@ -234,7 +262,6 @@ $(document).ready(() => {
         event.preventDefault()
         const self = this;
         obfuscated = listExportObfuscateElm.checked
-
         browser.storage.sync.get(['triggers'])
             .then((result) => {
                 let triggers = result.triggers;

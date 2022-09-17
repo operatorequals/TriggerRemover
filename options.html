@@ -42,12 +42,14 @@
             <label>[<i>Advanced</i>] Regular Expression (<a href="https://regex101.com/">reference</a>)</label> <br>
 
         </div>
-        <button type="submit" class="btn btn-primary mt-3">
+        <button type="submit" id="add-word-button" class="btn btn-primary mt-3">
             Add Trigger Word
+        </button>
+        <button type="button" id="del-word-button" class="btn btn-primary mt-3">
+            Remove Trigger Word
         </button>
     </form>
     <hr>
-    <br>
     <form id="import">
         <h2>Import from File or URL</h2>
         <div class="form-group">
@@ -64,7 +66,6 @@
         </button>
     </form>
     <hr>
-    <br>
     <form id="export">
         <h2>Export to file</h2>
         <div class="form-group">
