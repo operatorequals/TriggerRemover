@@ -31,14 +31,17 @@ searching for it (looking at you Youtube Related Videos), and these places have 
 
 One can create lists either manually or by importing custom lists. This repository also provides sample lists under [`trigger_lists/`](https://github.com/operatorequals/TriggerRemover/tree/master/trigger_lists) directory.
 
-The `Preset Lists` shown in Extension's *Options Page* are directly load the lists of the above directory.
+The `Preset Lists` shown in Extension's *Options Page* directly load the lists of the above directory.
 
 
 #### Preset Lists
 
 * Trigger Warning Phrases
+
 Phrases that indicate that content can be triggering, such as `TW`, `Trigger Warning`.
+
 * Eating Disorders
+
 Words and phrases, as well as measurements that can have triggering effects on people with EDs.
 
 ##### ... a lot more missing ...
