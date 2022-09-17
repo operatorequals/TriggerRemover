@@ -21,6 +21,14 @@ jobs:
           cmd: build
           source: ./
 
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          # Artifact name
+          name: trigger-remover.unsigned.xpi
+          # A file, directory or wildcard pattern that describes what to upload
+          path: ${{ steps.web-ext-build.outputs.target }}
+            
       - name: "web-ext sign"
         id: web-ext-sign
         uses: kewisch/action-web-ext@v1
