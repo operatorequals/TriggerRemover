@@ -21,6 +21,7 @@ jobs:
           cmd: build
           source: .
           filename: "{name}-{version}.xpi"
+          ignoreFiles: '["trigger_lists/", "README.md", "index.html", "assets/js/index.js"]'
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
