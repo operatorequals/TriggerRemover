@@ -20,12 +20,12 @@ can cause stress, spiraling and thoughts of relapse.
 There are several places that can serve triggering content without explicitly
 searching for it (looking at you Youtube Related Videos), and these places have been targeted first by this Extension.
 
-## Usage
-
 ## Webpages currently filtered
 * Youtube Search Results page (`/results`)
 * Youtube Related Videos (`/watch`)
 * ... more to come ...
+
+## Usage
 
 ### Trigger Lists
 
