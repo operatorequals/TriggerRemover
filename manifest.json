@@ -17,27 +17,23 @@
     "permissions": [
         "storage",
         "activeTab",
-        // For importing remote Trigger Lists
         "*://raw.githubusercontent.com/*"
     ],
     "options_ui": {
         "page": "options.html",
         "browser_style": false
     },
-    // "background": {
-    //     "scripts": ["assets/js/background.js"]
-    // },
 
-    // "browser_specific_settings": {
-    //   "gecko": {
-    //     "id": "addon@example.com",
-    //     "strict_min_version": "42.0"
-    //   }
-    // },
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "{abcfbb2c-1cd4-407e-8d2e-5334c5fe7467}",
+        "strict_min_version": "42.0"
+      }
+    },
 
   "content_scripts": [
     
-    { // Youtube 
+    {
       "matches": [
         "https://*.youtube.com/**"
       ],
