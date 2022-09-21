@@ -1,7 +1,7 @@
 # TriggerRemover ![logo](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/assets/images/icon48.png)
 
-A Browser Addon/Extension that *removes* triggering content from pages based on words matching with Trigger Word lists.
-Works both on *Firefox* and *Chrome* (and possibly others).
+A Browser Extension that *removes* triggering content from pages based on words matching with Trigger Word lists.
+Works both on [*Firefox*](https://addons.mozilla.org/en-US/firefox/addon/triggerremover/) and *Chrome* (and possibly others).
 
 One can create personal lists of words to avoid or use preset lists available in the extension.
 
