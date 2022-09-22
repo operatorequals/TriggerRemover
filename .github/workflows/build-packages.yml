@@ -1,0 +1,57 @@
+name: "Build Unsigned Packages"
+on:
+  push:
+    branch:
+    - master
+
+  workflow_dispatch:
+
+jobs:
+  sign:
+    name: "Build Extensions"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v1
+
+# ===============================
+
+      - name: Set Manifest v2
+        run:
+          cp manifest.v2.json manifest.json
+
+      - name: "Build Firefox"
+        id: web-ext-build-v2
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: build
+          source: .
+          filename: "{name}-{version}.v2.xpi"
+          ignoreFiles: '["trigger_lists/", "README.md", "index.html", "assets/js/index.js"]'
+
+      - name: Upload a Unsigned XPI v2
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: triggerremover.v2.unsigned.xpi
+          path: ${{ steps.web-ext-build-v2.outputs.target }}
+
+# ===============================
+
+      - name: Set Manifest v3
+        run:
+          cp manifest.v3.json manifest.json
+
+      - name: "Build Chrome"
+        id: web-ext-build-v3
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: build
+          source: .
+          filename: "{name}-{version}.v3.zip"
+          ignoreFiles: '["trigger_lists/", "README.md", "index.html", "assets/js/index.js"]'
+
+      - name: Upload a Unsigned XPI v3
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: triggerremover.v3.unsigned.zip
+          path: ${{ steps.web-ext-build-v3.outputs.target }}
