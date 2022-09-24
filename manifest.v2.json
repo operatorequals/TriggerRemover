@@ -16,7 +16,6 @@
     },
     "permissions": [
         "storage",
-        "activeTab",
         "*://raw.githubusercontent.com/*"
     ],
     "options_ui": {
