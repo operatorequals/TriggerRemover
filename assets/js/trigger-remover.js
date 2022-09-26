@@ -32,6 +32,28 @@ async function getWebExtTriggers(){
        return ret
 }
 
+async function addTriggerWord(trigger_word, trigger_word_obj){
+	result = await browser.storage.sync.get('triggers')
+	ret = {}
+	if (result.triggers !== undefined){
+	   ret = result.triggers
+	}
+	ret[trigger_word] = trigger_word_obj
+	await browser.storage.sync.set({'triggers': ret})
+	console.log(`[${WebExtName}] Trigger word added: '${trigger_word}'`)
+	return true
+}
+
+async function removeTriggerWord(trigger_word){
+	result = await browser.storage.sync.get('triggers')
+	if (result.triggers === undefined) return false // If empty there is nothing to remove
+	if (result.triggers[trigger_word] === undefined) return false // Trigger word not found
+	delete result.triggers[trigger_word]
+	browser.storage.sync.set({'triggers': result.triggers})
+	console.log(`[${WebExtName}] Trigger word deleted: '${trigger_word}'`)
+	return true
+}
+
 async function getWebExtSettings(){
 	result = await browser.storage.sync.get(['settings'])
 	if (result.settings === undefined){
