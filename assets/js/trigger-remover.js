@@ -1,5 +1,5 @@
 const WebExtName = "TriggerRemover"
-const WebExtVersion = "0.1.5"
+const WebExtVersion = "0.2.0"
 const WebExtAuthor = "https://github.com/operatorequals"
 
 const WebExtUrl = browser.runtime.getURL("/")
