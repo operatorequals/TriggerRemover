@@ -20,10 +20,6 @@
         "storage"
     ],
     
-    "host_permissions": [
-        "*://raw.githubusercontent.com/*"
-    ],
-
     "options_ui": {
         "page": "options.html",
         "browser_style": false

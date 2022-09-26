@@ -15,8 +15,7 @@
         "browser_style": true
     },
     "permissions": [
-        "storage",
-        "*://raw.githubusercontent.com/*"
+        "storage"
     ],
     "options_ui": {
         "page": "options.html",
