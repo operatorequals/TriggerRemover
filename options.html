@@ -22,34 +22,6 @@
         </label>
         <br>
     <hr>
-
-    <form id="add">
-        <h2>Add new Triggers</h2>
-        <div class="form-group">
-            <label for="name">Trigger Word</i></label>
-            <input type="text" class="form-control" name="word" id="word" placeholder="last time you type it" required />
-        </div>
-        <div class="form-group">
-            <label><b>Options:</b></label><br>
-
-            <input type="checkbox" name="case-sensitive" id="case-sensitive" value="case-sensitive">
-            <label>Case Sensitive</label> <br>
-
-            <input type="checkbox" name="whole-word" id="whole-word" value=true>
-            <label>Whole Word</label> <br>
-
-            <input type="checkbox" name="regex" id="regex" value="regex">
-            <label>[<i>Advanced</i>] Regular Expression (<a href="https://regex101.com/">reference</a>)</label> <br>
-
-        </div>
-        <button type="submit" id="add-word-button" class="btn btn-primary mt-3">
-            Add Trigger Word
-        </button>
-        <button type="button" id="del-word-button" class="btn btn-primary mt-3">
-            Remove Trigger Word
-        </button>
-    </form>
-    <hr>
     <form id="import">
         <h2>Import from File or URL</h2>
         <div class="form-group">
@@ -87,10 +59,16 @@
         </button>
     </form>
 
+    <a href="/list-editor.html" target="_blank">
+    <button type="submit" id="list-editor" class="btn btn-primary mt-3 center">
+        Trigger List Editor
+    </button>
+    </a>
+
     <script src="assets/js/lib/browser-polyfill.min.js"></script>
     <script src="assets/js/lib/jquery.min.js"></script>
     <script src="assets/js/trigger-remover.js"></script>
-    <script src="assets/js/options.js"></script>
+    <script src="assets/js/pages/options.js"></script>
 
 </body>
 </html>

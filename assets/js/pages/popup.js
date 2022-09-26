@@ -30,7 +30,7 @@ $(document).ready(() => {
             .then((result) => {
                 console.log("Drawing: " + result.exposure)
                 value = parseInt(result.exposure, 10)
-                exposureLabelRatio.innerHTML = value
+                exposureLabelRatio.innerText = value
                 exposureSlider.value = value
                 for (let val in ExposureLevelMessages){
                     if (value <= val){

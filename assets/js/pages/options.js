@@ -7,7 +7,7 @@ function showMessage(message, success){
     type = 'alert-danger'
     if (success) {type = 'alert-success'}
     let messageElm = document.createElement("div")
-    messageElm.innerHTML = message
+    messageElm.innerText = message
     messageElm.setAttribute("class", `alert ${type}`)
     document.body.prepend(messageElm);
     // To keep the message on screen long enough
@@ -136,12 +136,6 @@ function download(filename, text) {
 }
 
 $(document).ready(() => {
-    const formAddElm = $('form#add');
-    const nameElm = $('#word');
-    const wholeWordElm = $('#whole-word')[0];
-    const caseSensitiveElm = $('#case-sensitive')[0];
-    const regexElm = $('#regex')[0];
-
     const formImportElm = $('form#import');
     const fileImportElm = $('#trigger_list_file')[0];
     const fileUrlImportElm = $('#trigger_list_url');
@@ -155,63 +149,6 @@ $(document).ready(() => {
     // Preset List toggle actions
     for (key of PresetListKeys)
         $(`input#${key}-list-url`).on('change', toggleRemoteList)
-
-
-    formAddElm.on('submit', (event) => {
-        const self = this;
-
-        //bring triggers from storage
-        browser.storage.sync.get(['triggers'])
-            .then((result) => {
-                let triggers = result.triggers;
-                if (!triggers) {
-                    triggers = {};
-                }
-                // console.log(triggers)
-                trigger_word = nameElm.val().trim()
-                triggers[trigger_word] = {
-                	case_sensitive: caseSensitiveElm.checked,
-                	whole_word: wholeWordElm.checked,
-                	regex: regexElm.checked,
-                }
-
-                //store triggers in the storage
-                browser.storage.sync.set({'triggers': triggers})
-                    .then(() => {
-                	    nameElm.val('');
-                        showMessage("Word added successfully!", true)
-                });
-        });
-        return false; //disable default form submit action
-    });
-
-    $('button#del-word-button').on('click', (event) => {
-        //bring triggers from storage
-        trigger_word = nameElm.val().trim()
-        if (!trigger_word) return false
-        browser.storage.sync.get(['triggers'])
-            .then((result) => {
-                let triggers = result.triggers;
-                if (!triggers) {
-                    triggers = {};
-                }
-                // console.log(triggers)
-                trigger_word = nameElm.val().trim()
-                if (triggers[trigger_word]){
-                    delete triggers[trigger_word]
-                } else {
-                    showMessage("Word not found in stored Trigger List!", false)
-                    return false
-                }
-
-                //store triggers in the storage
-                browser.storage.sync.set({'triggers': triggers})
-                    .then(() => {
-                        nameElm.val('');
-                        showMessage("Word deleted successfully!", true)
-                });
-        });
-    });
 
     formImportElm.on('submit', (event) => {
         event.preventDefault()
@@ -258,38 +195,36 @@ $(document).ready(() => {
         }
     });
 
-    formExportElm.on('submit', (event) => {
+    formExportElm.on('submit', async (event) => {
         event.preventDefault()
         const self = this;
         obfuscated = listExportObfuscateElm.checked
-        browser.storage.sync.get(['triggers'])
-            .then((result) => {
-                let triggers = result.triggers;
 
-                // If the file is needed obfuscated
-                // Turn all keys to Base64
-                if (obfuscated){
-                    triggers_obf = {}
-                    for (let trigger_entry in triggers){
-                        triggers_obf[btoa(trigger_entry)] = triggers[trigger_entry]
-                    }
-                    triggers = triggers_obf
-                }
+        let triggers = await getWebExtTriggers()
 
-                download_obj = {
-                    'meta': {
-                        'name': listNameElm.val().trim(),
-                        'author': listAuthorElm.val().trim(),
-                        'obfuscated': obfuscated,
-                        'version': WebExtVersion
-                    },
-                    'triggers': {...triggers}
-                }
+        // If the file is needed obfuscated
+        // Turn all keys to Base64
+        if (obfuscated){
+            triggers_obf = {}
+            for (let trigger_entry in triggers){
+                triggers_obf[ubtoa(trigger_entry)] = triggers[trigger_entry]
+            }
+            triggers = triggers_obf
+        }
 
-                console.log(download_obj)
-                download(listNameElm.val().trim()+".triggers.json", JSON.stringify(download_obj, null, 1))
-                showMessage("List exported successfully!", true)
-            });
+        download_obj = {
+            'meta': {
+                'name': listNameElm.val().trim(),
+                'author': listAuthorElm.val().trim(),
+                'obfuscated': obfuscated,
+                'version': WebExtVersion
+            },
+            'triggers': {...triggers}
+        }
+
+        console.log(download_obj)
+        download(listNameElm.val().trim()+".triggers.json", JSON.stringify(download_obj, null, 1))
+        showMessage("List exported successfully!", true)
     });
 
 });
