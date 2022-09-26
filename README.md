@@ -29,7 +29,7 @@ searching for it (looking at you Youtube Related Videos), and these places have 
 
 ### Trigger Lists
 
-One can create lists either manually or by importing custom lists. This repository also provides sample lists under [`trigger_lists/`](https://github.com/operatorequals/TriggerRemover/tree/master/trigger_lists) directory.
+One can create lists either manually (using the *List Editor*) or by importing custom lists. This repository also provides sample lists under [`trigger_lists/`](https://github.com/operatorequals/TriggerRemover/tree/master/trigger_lists) directory.
 
 The `Preset Lists` shown in Extension's *Options Page* directly load the lists of the above directory.
 
@@ -54,8 +54,11 @@ that there **will be possibility** to face some triggering content (if it was in
 This feature is there to aid with [Exposure Therapy](https://psychcentral.com/lib/what-is-exposure-therapy), where one can try to identify and control triggers
 in order to achieve *desensitization*.
 
+### List Editor page
+![screenshot](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/img/screenshot-0-2-0-editor.png)
+
 ### Options page
-![screenshot](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/img/screenshot-0-0-2.png)
+![screenshot](https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/img/screenshot-0-2-0-options.png)
 
 ## Contributing
 
