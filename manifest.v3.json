@@ -1,6 +1,6 @@
 {
     "name": "TriggerRemover",
-    "version": "0.2.0",
+    "version": "0.3.1",
     "description": "Remove Trigger-inducing content from pages",
     "homepage_url": "https://github.com/operatorequals/TriggerRemover",
     "manifest_version": 3,
