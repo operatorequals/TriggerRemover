@@ -2,6 +2,8 @@ const WebExtName = "TriggerRemover"
 const WebExtVersion = "0.2.0"
 const WebExtAuthor = "https://github.com/operatorequals"
 
+const TriggerListMetaUrl = "https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/trigger_lists/meta.json"
+
 const WebExtUrl = browser.runtime.getURL("/")
 
 const WebExtSettingsDefault = {
@@ -17,9 +19,6 @@ const ExposureLevelMessages = {
     100: "You are attending the Internet. <b>Congratulations!</b>",
 }
 
-const PresetListKeys = [
-	"tw", "ed",
-]
 
 async function getWebExtTriggers(){
        result = await browser.storage.sync.get('triggers')
@@ -81,5 +80,10 @@ async function toggleWebExtEnabled(){
 	console.log(`[${WebExtName}] WebExtEnabled toggled: ${settings['enabled']}`)
 	return settings['enabled']
 }
+
+const escapeHtml = (unsafe) => {
+    return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+}
+
 
 console.log(`[${WebExtName}] Loaded Main Script`)

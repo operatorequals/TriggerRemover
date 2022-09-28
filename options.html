@@ -8,19 +8,12 @@
 </head>
 <body class="p-3">
 
-<!--     <h1>TriggerRemover Options</h1>
+<!--
+    <h1>TriggerRemover Options</h1>
     <hr>
  -->    
     <h2>Preset Lists</h2>
-        <label>
-            <input type="checkbox" name="tw" id="tw-list-url">
-            General phrases of '<i>Trigger Warning</i>'
-        </label>
-        <br>        <label>
-            <input type="checkbox" name="ed" id="ed-list-url">
-            Eating Disorders
-        </label>
-        <br>
+    <div id="preset-lists"></div>
     <hr>
     <form id="import">
         <h2>Import from File or URL</h2>
@@ -67,6 +60,7 @@
 
     <script src="assets/js/lib/browser-polyfill.min.js"></script>
     <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/js/lib/utf-8-base64.js"></script>
     <script src="assets/js/trigger-remover.js"></script>
     <script src="assets/js/pages/options.js"></script>
 

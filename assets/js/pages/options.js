@@ -97,7 +97,6 @@ function removeList(file_contents_obj){
         });
 }
 
-
 function toggleRemoteList(event){
     list_id = event.target.name
     enabled = event.target.checked
@@ -119,7 +118,6 @@ trigger_lists/${list_id}.triggers.json`
       .catch((error) => {
         showMessage("URL could not be reached or did not contain Trigger Word List", false)
     });
-
 }
 
 // Taken from:
@@ -135,6 +133,26 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
+function populatePresetLists(element){
+    fetch(TriggerListMetaUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            for (key in data){
+                // Apply HTML entity escape to avoid XSS from met.json file
+                list_id = escapeHtml(key)
+                list_desc = escapeHtml(data[key]['description'])
+                list_version = escapeHtml(data[key]['list-version'])
+                element.append(`
+<label>
+    <input type="checkbox" name="${list_id}" id="${list_id}-list-url">
+    ${list_desc} <sup> v${list_version} </sup>
+</label>
+<br>`)
+                $(`input#${list_id}-list-url`).on('change', toggleRemoteList)
+            }
+    });
+}
+
 $(document).ready(() => {
     const formImportElm = $('form#import');
     const fileImportElm = $('#trigger_list_file')[0];
@@ -147,8 +165,8 @@ $(document).ready(() => {
     const listExportObfuscateElm = $('#obfuscate_trigger_list')[0];
 
     // Preset List toggle actions
-    for (key of PresetListKeys)
-        $(`input#${key}-list-url`).on('change', toggleRemoteList)
+    const presetListsDiv = $('div#preset-lists')
+    populatePresetLists(presetListsDiv)
 
     formImportElm.on('submit', (event) => {
         event.preventDefault()
