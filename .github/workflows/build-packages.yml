@@ -27,7 +27,7 @@ jobs:
           cmd: build
           source: .
           filename: "{name}-{version}.v2.xpi"
-          ignoreFiles: '["trigger_lists/", "README.md", "index.html", "assets/js/index.js"]'
+          ignoreFiles: '["trigger_lists/", "README.md", "img/"]'
 
       - name: Upload a Unsigned XPI v2
         uses: actions/upload-artifact@v3.1.0
@@ -48,7 +48,7 @@ jobs:
           cmd: build
           source: .
           filename: "{name}-{version}.v3.zip"
-          ignoreFiles: '["trigger_lists/", "README.md", "index.html", "assets/js/index.js"]'
+          ignoreFiles: '["trigger_lists/", "README.md", "img/"]'
 
       - name: Upload a Unsigned XPI v3
         uses: actions/upload-artifact@v3.1.0
