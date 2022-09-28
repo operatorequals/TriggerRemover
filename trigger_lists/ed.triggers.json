@@ -3,7 +3,7 @@
   "name": "Eating Disorder Trigger Words",
   "author": "https://github.com/operatorequals/TriggerRemover",
   "obfuscated": true,
-  "version": "0.0.2"
+  "version": "0.2.0"
  },
  "triggers": {
   "ZXVnZW5pYVxzKmNvb25leQ==": {
@@ -16,25 +16,10 @@
    "whole_word": false,
    "regex": false
   },
-  "YnVsaW1pYQ==": {
-   "case_sensitive": false,
-   "whole_word": false,
-   "regex": false
-  },
   "ZWF0aW5nXHMqZGlzb3JkZXI=": {
    "case_sensitive": false,
    "whole_word": false,
    "regex": true
-  },
-  "cHJvXHMqYW4=": {
-   "case_sensitive": false,
-   "whole_word": false,
-   "regex": true
-  },
-  "cHJvLWFu": {
-   "case_sensitive": false,
-   "whole_word": false,
-   "regex": false
   },
   "Y2Fsb3JpXHcrXHMqY291bnQ=": {
    "case_sensitive": false,
@@ -47,11 +32,6 @@
    "regex": true
   },
   "ZmF0XHMqYm9keQ==": {
-   "case_sensitive": false,
-   "whole_word": false,
-   "regex": true
-  },
-  "Ym9keVxzKmNoZWNraW5n": {
    "case_sensitive": false,
    "whole_word": false,
    "regex": true
@@ -86,25 +66,40 @@
    "whole_word": false,
    "regex": false
   },
-  "dGhpbnNwbw==": {
-   "case_sensitive": false,
-   "whole_word": false,
-   "regex": false
-  },
-  "dGhpbnNwaXJhdGlvbg==": {
-   "case_sensitive": false,
-   "whole_word": false,
-   "regex": false
-  },
   "bG9zZVxzKlx3KlxzKmZhdA==": {
    "case_sensitive": false,
    "whole_word": false,
    "regex": true
   },
-  "XGQrXHMqKHBvdW5kcz98bGJzfGdyYW1zP3xraWxvcz98a2dzP3xibWl8az9jYWxzPyk=": {
-   "case_sensitive": false,
-   "whole_word": false,
+  "dGhpbnNwKGlyYXRpb258byk=": {
+   "whole-word": false,
+   "case-sensitive": false,
    "regex": true
+  },
+  "Ym9keVxzKmNoZWNrKGluZyk/": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "cHJvXHMqYW4=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "YnVsaW1p": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "XGQrXHMqKHBvdW5kcz98bGJzP3xncmFtcz98a2lsb3M/fGtncz98Ym1pfGs/Y2Fscz8p": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "ZmFzdGluZw==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
   }
  }
 }
