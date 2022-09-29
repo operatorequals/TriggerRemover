@@ -36,13 +36,17 @@ The `Preset Lists` shown in Extension's *Options Page* directly load the lists o
 
 #### Preset Lists
 
-* Trigger Warning Phrases
+* Trigger Warning Notations
 
-Phrases that indicate that content can be triggering, such as `TW`, `Trigger Warning`.
+Phrases that indicate that content can be triggering, such as `TW`, `*TW*`,`[Trigger Warning]`.
 
 * Eating Disorders
 
 Words and phrases, as well as measurements that can have triggering effects on people with EDs.
+
+* Porn Addiction
+
+Words and phrases usually found in porn. If you get turned on by this [sofa](https://virtualbackgrounds.site/wp-content/uploads/2020/07/casting-couch-768x432.jpg) you might need to look at the excellent [NoFap](https://nofap.com/porn-addiction) forum. And maybe use this list.
 
 ##### ... a lot more missing ...
 
