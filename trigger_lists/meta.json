@@ -3,9 +3,8 @@
 		"description": "'Trigger Warning' notations",
 		"list-version": "1.0.0"
 	},
-
 	"ed": {
 		"description": "Eating Disorders",
-		"list-version": "1.0.0"
-	}
+		"list-version": "1.0.1"
+	}	
 }

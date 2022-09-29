@@ -81,11 +81,6 @@
    "case-sensitive": false,
    "regex": true
   },
-  "cHJvXHMqYW4=": {
-   "whole-word": false,
-   "case-sensitive": false,
-   "regex": true
-  },
   "YnVsaW1p": {
    "whole-word": false,
    "case-sensitive": false,
@@ -100,6 +95,16 @@
    "whole-word": false,
    "case-sensitive": false,
    "regex": false
+  },
+  "cHJvXFcqYW4=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "c3RheVxzKnRoaW4=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
   }
  }
 }
