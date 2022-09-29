@@ -1,0 +1,325 @@
+{
+ "meta": {
+  "name": "Porn Trigger Words",
+  "author": "https://github.com/operatorequals/TriggerRemover",
+  "obfuscated": true,
+  "version": "0.3.1"
+ },
+ "triggers": {
+  "YW5hbA==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YXNz": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YW51cw==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YXNzXFcqaG9sZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "YmFyZVxXKmJhY2s=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "YmRzbQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Ymxvd1xXKmpvYg==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Ym9uZGFnZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Ym9vYnM/": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Ym9vdHk=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YnVraz9ha2U=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "YnV0dA==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YnV0dD9cVypwbHVn": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Y2xpdChvcmlzKT8=": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Y29jaw==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Y29ja1xXKnJpbmc=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Y293XFcqZ2lybA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Y3JlYW1cVypwaWU=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Y3VtKG1pbmcpPw==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Y3VtXFcqc2hvdA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Y3VudA==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "ZGVlcFxXKnRocm9hdA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "ZGljaw==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "ZGlsZG8=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "ZGlydHlcVyp0YWxr": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "ZG9nZ3lcVypzdHlsZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "ZmluZ2VyaW5n": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Zmxlc2hcVypsaWdodA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Zm9yZVxXKnNraW4=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Z2Fn": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "Z2FnXFcqcmVmbGV4": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "aGFuZFxXKmpvYg==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "amVya1xXKm9mZg==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "bGlja2luZw==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "bGluZ2VyaWU=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "bWFzdHVyYmF0KGV8aW9uKQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "bWlsZg==": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "bWlzc2lvbmFyeQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "b3JnYXNt": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "b3JneQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "bnVkZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "b3JhbA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "cGVuaXM=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "cG9ybg==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "cHJvc3RpdHV0ZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "cHVzc3k=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "c2Npc3NvcmluZw==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "c2x1dA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "c3Blcm0=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "c3RyYXBcVypvbg==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "c3RyaXBwZXI=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "c3Vja2luZw==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "c3VnYXJcVypkYWRkeQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "dGVzdGljbGVzPw==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "KHRocmVlfGZvdXIpc29tZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "dGl0cz8=": {
+   "whole-word": true,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "dmFnaW5h": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "dmlicmF0b3I=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "dmlyZ2lu": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "d2Fuaw==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "d2V0XFcqZHJlYW0=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "XFcqYmpcVyo=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "Z2l2KGV8aW5nKVxXKmhlYWQ=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  }
+ }
+}

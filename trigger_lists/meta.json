@@ -6,5 +6,10 @@
 	"ed": {
 		"description": "Eating Disorders",
 		"list-version": "1.0.1"
+	},
+	"pn": {
+		"description": "Porn Trigger Words",
+		"list-version": "1.0.0",
+		"reference": "https://www.reddit.com/r/skribbl/comments/hv6o3h/sex_and_dirty_word_list_100_nsfw"
 	}	
 }
