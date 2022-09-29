@@ -1,5 +1,5 @@
 const WebExtName = "TriggerRemover"
-const WebExtVersion = "0.3.1"
+const WebExtVersion = "0.3.2"
 const WebExtAuthor = "https://github.com/operatorequals"
 
 const TriggerListMetaUrl = "https://raw.githubusercontent.com/operatorequals/TriggerRemover/master/trigger_lists/meta.json"
