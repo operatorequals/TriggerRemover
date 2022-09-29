@@ -1,6 +1,8 @@
 TABLE_ELEMENTS = {}
 const CHECKBOX_TYPES = ["whole-word", "case-sensitive", "regex"]
 const ID_SPLITTER = '^'
+const SearchParams = new URLSearchParams(window.location.search)
+const HideWords = SearchParams.get('hidden') == 'true'
 
 function getWordID(id){
     parts = id.split(ID_SPLITTER)
@@ -168,8 +170,13 @@ $(document).ready(() => {
         wordInputElm.className = "form-control"
         wordInputElm.id = "word" + id_suffix
         wordInputElm.placeholder = "last time you type it"
-        wordInputElm.value = trigger_word // obfuscate the word
-        if (trigger_word)
+        if (HideWords){
+            wordInputElm.value = ubtoa(trigger_word) // obfuscate the word
+            wordInputElm.disabled = true
+        } else {
+            wordInputElm.value = trigger_word // obfuscate the word
+        }
+        if (!trigger_word)  // if it is an empty word - form is editable
             wordInputElm.disabled = false
         wordInputElm.onkeypress = change_word
         wordCellElm.appendChild(wordInputElm)
