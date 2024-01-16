@@ -1,0 +1,55 @@
+{
+ "meta": {
+  "name": "Sexual Assault Trigger Words",
+  "author": "https://github.com/operatorequals/TriggerRemover",
+  "obfuscated": true,
+  "version": "0.3.2"
+ },
+ "triggers": {
+  "c2V4KHVhbCk/XHMqW2FidXNlfGFzc2F1bHRd": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "YWJ1c2U=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "cmFwZQ==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "cmFwcD9pc3Q=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "cGVkbyhwaGlsZSk/cz8=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "bW9sZXN0KGF0aW9uKT8=": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": true
+  },
+  "a2lkbmFw": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YWJkdWN0": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  },
+  "YXNzYXVsdA==": {
+   "whole-word": false,
+   "case-sensitive": false,
+   "regex": false
+  }
+ }
+}
