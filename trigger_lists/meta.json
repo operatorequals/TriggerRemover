@@ -11,5 +11,10 @@
 		"description": "Porn Addiction",
 		"list-version": "1.0.0",
 		"reference": "https://www.reddit.com/r/skribbl/comments/hv6o3h/sex_and_dirty_word_list_100_nsfw"
-	}	
+	}
+	"sa": {
+		"description": "Sexual Assault",
+		"list-version": "0.1.0",
+	}
+
 }
